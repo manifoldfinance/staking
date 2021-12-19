@@ -34,7 +34,9 @@
     "fathom-client": "^3.1.0",
     "ismobilejs": "^1.1.1",
     "jazzicon-ts": "^1.0.0",
+    "kbar": "^0.1.0-beta.24",
     "next": "^11",
+    "next-seo": "^4.28.1",
     "omit-ts": "^1.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -51,6 +53,7 @@
     "@next/bundle-analyzer": "^11.1.0",
     "@typechain/ethers-v5": "^7.0.1",
     "@types/classnames": "^2.3.1",
+    "@types/gtag.js": "^0.0.8",
     "@types/node": "^14",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.11",
@@ -72,7 +75,10 @@
     "type": "git",
     "url": "git+https://github.com/manifoldfinance/staking.git"
   },
-  "keywords": ["ethereum", "staking"],
+  "keywords": [
+    "ethereum",
+    "staking"
+  ],
   "author": "Manifold Finance, Inc",
   "license": "MIT",
   "bugs": {

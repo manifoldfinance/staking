@@ -1,5 +1,5 @@
-import useWalletModal from '@/hooks/useWalletModal';
 import Button from './button';
+import useWalletModal from '@/hooks/useWalletModal';
 
 export default function ConnectAccount() {
   const openWalletModal = useWalletModal((state) => state.open);
@@ -16,7 +16,7 @@ export default function ConnectAccount() {
             <div className="space-y-2 text-gray-300">
               <p></p>
 
-              <p>Please read our Guide first!</p>
+              <p>v0.1.2</p>
             </div>
 
             <Button onClick={openWalletModal}>{`Connect Wallet`}</Button>

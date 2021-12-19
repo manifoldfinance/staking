@@ -1,7 +1,7 @@
-import { Menu } from '@headlessui/react';
-import cn from 'classnames';
 import Link from 'next/link';
+import { Menu } from '@headlessui/react';
 import { Menu as MenuIcon } from 'react-feather';
+import cn from 'classnames';
 
 const menuItemClassNames =
   'flex rounded items-center w-full p-2 text-sm focus:outline-none';
@@ -48,15 +48,18 @@ export default function MobileMenu() {
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (
-            <NextLink href="#" active={active}>
-              Protocol
+            <NextLink href="https://forums.manifoldfinance.com" active={active}>
+              Forums
             </NextLink>
           )}
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (
-            <NextLink href="#" active={active}>
-              Payouts
+            <NextLink
+              href="https://github.com/manifoldfinance/support"
+              active={active}
+            >
+              Support
             </NextLink>
           )}
         </Menu.Item>

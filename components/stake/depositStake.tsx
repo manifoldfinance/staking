@@ -1,22 +1,23 @@
-import { TOKEN_ADDRESSES } from '@/constants/tokens';
+import Button, { MaxButton } from '../button';
+import { MIN_INPUT_VALUE, MaxUint256 } from '@/constants/numbers';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
-import { MaxUint256, MIN_INPUT_VALUE } from '@/constants/numbers';
+import type { FormEvent } from 'react';
+import NumericalInput from '../numericalInput';
+import { TOKEN_ADDRESSES } from '@/constants/tokens';
+import { TokenSingle } from '../tokenSelect';
+import { TransactionToast } from '../customToast';
+import handleError from '@/utils/handleError';
+import toast from 'react-hot-toast';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
-import useWeb3Store from '@/hooks/useWeb3Store';
-import useXFOLDStaked from '@/hooks/view/usexFOLDStaked';
+import { useMemo } from 'react';
 import useTokenAllowance from '@/hooks/view/useTokenAllowance';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
-import handleError from '@/utils/handleError';
-import { formatUnits, parseUnits } from '@ethersproject/units';
-import type { FormEvent } from 'react';
-import { useMemo } from 'react';
-import toast from 'react-hot-toast';
-import Button, { MaxButton } from '../button';
-import { TransactionToast } from '../customToast';
-import NumericalInput from '../numericalInput';
-import { TokenSingle } from '../tokenSelect';
-import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+import useWeb3Store from '@/hooks/useWeb3Store';
+import useXFOLDStaked from '@/hooks/view/usexFOLDStaked';
 
 export default function DepositStake() {
   const account = useWeb3Store((state) => state.account);
@@ -26,7 +27,7 @@ export default function DepositStake() {
 
   const { data: xfoldBalance, mutate: xfoldBalanceMutate } = useTokenBalance(
     account,
-    TOKEN_ADDRESSES.xFOLD[chainId],
+    TOKEN_ADDRESSES.FOLD[chainId],
   );
 
   const { mutate: xfoldStakedMutate } = useXFOLDStaked();
