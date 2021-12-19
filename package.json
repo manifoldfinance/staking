@@ -1,6 +1,6 @@
 {
-  "name": "@manifoldfinance/fold-dapp",
-  "version": "0.3.2",
+  "name": "@manifoldfinance/staking",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -67,5 +67,32 @@
     "tailwindcss": "^2.2.8",
     "typechain": "5.1.2",
     "typescript": "^4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manifoldfinance/staking.git"
+  },
+  "keywords": ["ethereum", "staking"],
+  "author": "Manifold Finance, Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manifoldfinance/staking/issues"
+  },
+  "homepage": "https://github.com/manifoldfinance/staking#readme",
+  "browserslist": {
+    "production": [
+      ">0.3%",
+      "not dead",
+      "not op_mini all",
+      "not IE > 0",
+      "not samsung 4",
+      "not and_uc 12.12"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 edge version",
+      "last 1 safari version"
+    ]
   }
 }
