@@ -13,7 +13,7 @@
     "compile-contract-types": "npx typechain --target ethers-v5 --out-dir './contracts/types' './contracts/*.json'"
   },
   "dependencies": {
-    "@ethersproject/abstract-provider": "5.4.0",
+    "@ethersproject/abstract-provider": "5.5.1",
     "@ethersproject/address": "5.4.0",
     "@ethersproject/contracts": "5.4.0",
     "@ethersproject/properties": "5.4.0",
