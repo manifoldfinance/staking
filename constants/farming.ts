@@ -15,9 +15,9 @@ export const FARMING_LP_SYMBOL = {
 export const LP_FARMING_POOLS: Record<SupportedChainId, FarmingPool[]> = {
   [SupportedChainId.MAINNET]: [
     {
-      address: '0xa914a9b9e03b6af84f9c6bd2e0e8d27d405695db',
-      name: 'SushiSwap FOLD/WETH LP',
-      pairs: ['FOLD', 'WETH'],
+      address: '0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb',
+      name: 'xFOLD',
+      pairs: ['FOLD', 'xFOLD'],
       link: 'https://analytics.sushi.com/pairs/0xa914a9b9e03b6af84f9c6bd2e0e8d27d405695db',
     },
     {

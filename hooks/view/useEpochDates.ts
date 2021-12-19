@@ -1,17 +1,17 @@
+import type { DOMODAO } from '@/contracts/types';
 import { EPOCH_DURATION } from '@/constants/numbers';
-import type { GovRewards } from '@/contracts/types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { useDictatorDAO } from '../useContract';
 import useSWR from 'swr';
-import { useGovRewards } from '../useContract';
 
 dayjs.extend(relativeTime);
 
-function getEpochDates(contract: GovRewards) {
+function getEpochDates(contract: DOMODAO) {
   return async (_: string) => {
-    const epochStart = await contract.epochStart();
+    const epochStart = await contract.GRACE_PERIOD();
 
-    const currentEpoch = await contract.getCurrentEpoch();
+    const currentEpoch = await contract.DELAY();
 
     const startDate =
       epochStart.toNumber() + (currentEpoch.toNumber() - 1) * EPOCH_DURATION;
@@ -32,7 +32,7 @@ function getEpochDates(contract: GovRewards) {
 }
 
 export default function useEpochDates() {
-  const contract = useGovRewards();
+  const contract = useDictatorDAO();
 
   const shouldFetch = !!contract;
 

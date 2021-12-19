@@ -1,6 +1,6 @@
+import MetaMaskOutline from '@/svgs/MetaMaskOutline';
 import useAddTokenToMetaMask from '@/hooks/useAddTokenToMetaMask';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import MetaMaskOutline from '@/svgs/MetaMaskOutline';
 
 export default function AddTokensToMetaMask() {
   const library = useWeb3Store((state) => state.library);
@@ -24,8 +24,8 @@ export default function AddTokensToMetaMask() {
               width={24}
               height={24}
               className="rounded-full h-6 w-6"
-              src={`/tokens/${`XFOLD`}.png`}
-              alt={`XFOLD`}
+              src={`/tokens/${`xFOLD`}.png`}
+              alt={`xFOLD`}
             />
           </div>
 

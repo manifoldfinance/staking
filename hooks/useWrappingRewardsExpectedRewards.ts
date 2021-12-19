@@ -1,13 +1,14 @@
+import type { ERC20, FOLD } from '@/contracts/types';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { useFoldToken, useTokenContract } from './useContract';
+
 import { EPOCH_REWARDS } from '@/constants/numbers';
 import { TOKEN_ADDRESSES } from '@/constants/tokens';
-import type { ERC20, FoldWrapper } from '@/contracts/types';
-import { formatUnits, parseUnits } from '@ethersproject/units';
 import useSWR from 'swr';
-import { useFoldWrapper, useTokenContract } from './useContract';
 import useWeb3Store from './useWeb3Store';
 
 function getWrappingRewardsExpectedRewards(
-  foldWrapper: FoldWrapper,
+  foldWrapper: FOLD,
   foldToken: ERC20,
 ) {
   return async (_: string, userAddress: string) => {
@@ -32,7 +33,7 @@ export default function useWrappingRewardsExpectedRewards(userAddress: string) {
 
   const foldToken = useTokenContract(TOKEN_ADDRESSES.FOLD[chainId]);
 
-  const foldWrapper = useFoldWrapper();
+  const foldWrapper = useFoldToken();
 
   const shouldFetch =
     !!foldWrapper && !!foldToken && typeof userAddress === 'string';

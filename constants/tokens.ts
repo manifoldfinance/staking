@@ -18,14 +18,14 @@ export const TOKEN_ADDRESSES: TokenAddresses = {
     [SupportedChainId.RINKEBY]: '0xd084944d3c05CD115C09d072B9F44bA3E0E45921',
   },
   [TokenNames.XFOLD]: {
-    [SupportedChainId.MAINNET]: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-    [SupportedChainId.RINKEBY]: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+    [SupportedChainId.MAINNET]: '0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb',
+    [SupportedChainId.RINKEBY]: '0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb',
   },
 };
 
 export const TOKEN_NAMES_BY_ADDRESS: Record<string, keyof typeof TokenNames> = {
   '0xd084944d3c05CD115C09d072B9F44bA3E0E45921': 'FOLD',
-  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': 'XFOLD',
+  '0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb': 'XFOLD',
   '0x57ab1ec28d129707052df4df418d58a2d46d5f51': 'USDC',
   '0x5e74c9036fb86bd7ecdcb084a0673efc32ea31cb': 'ETH',
   '0x6a22e5e94388464181578aa7a6b869e00fe27846': 'SLP',
@@ -93,7 +93,7 @@ export const SUSHI_SWAP_LINKS: Partial<Record<TokenNames, string>> = {
   [TokenNames.FOLD]:
     'https://app.sushi.com/swap?outputCurrency=0xd084944d3c05CD115C09d072B9F44bA3E0E45921',
   [TokenNames.XFOLD]:
-    'https://app.sushi.com/swap?outputCurrency=0xd084944d3c05CD115C09d072B9F44bA3E0E45921',
+    'https://app.sushi.com/swap?outputCurrency=0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb',
 };
 
 export const TOKEN_BUY_LINKS: Partial<Record<TokenNames, string>> = {
@@ -102,5 +102,5 @@ export const TOKEN_BUY_LINKS: Partial<Record<TokenNames, string>> = {
   [TokenNames.USDC]: '#',
   [TokenNames.ETH]: '#',
   [TokenNames.SLP]: '#',
-  [TokenNames.XFOLD]: '#',
+  [TokenNames.XFOLD]: 'https://etherscan.io/token/0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb',
 };

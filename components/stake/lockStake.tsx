@@ -1,19 +1,21 @@
-//import { useDictatorDAO } from '@/hooks/useContract';
-import useInput from '@/hooks/useInput';
-import useWeb3Store from '@/hooks/useWeb3Store';
-import { useFoldToken, useTokenContract } from '@/hooks/useContract';
-import useXFOLDStaked from '@/hooks/view/usexFOLDStaked';
-import useUserLockedUntil from '@/hooks/view/useUserLockedUntil';
-import calculateLockupMultiplier from '@/utils/calculateLockupMultiplier';
-import getFutureTimestamp from '@/utils/getFutureTimestamp';
-import handleError from '@/utils/handleError';
-import { BigNumber } from '@ethersproject/bignumber';
 import * as Slider from '@radix-ui/react-slider';
-import dayjs from 'dayjs';
+
 import { FormEvent, useMemo } from 'react';
-import toast from 'react-hot-toast';
+import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+
+import { BigNumber } from '@ethersproject/bignumber';
 import Button from '../button';
 import { TransactionToast } from '../customToast';
+import calculateLockupMultiplier from '@/utils/calculateLockupMultiplier';
+import dayjs from 'dayjs';
+import getFutureTimestamp from '@/utils/getFutureTimestamp';
+import handleError from '@/utils/handleError';
+import toast from 'react-hot-toast';
+//import { useDictatorDAO } from '@/hooks/useContract';
+import useInput from '@/hooks/useInput';
+import useUserLockedUntil from '@/hooks/view/useUserLockedUntil';
+import useWeb3Store from '@/hooks/useWeb3Store';
+import { useXFOLDStaked }from '@/hooks/view/usexFOLDStaked';
 
 export default function LockStake() {
   const chainId = useWeb3Store((state) => state.chainId);

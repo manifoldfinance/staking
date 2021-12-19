@@ -1,21 +1,22 @@
+import Button, { MaxButton } from '../button';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { getxFOLDStaked, useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
+
+import type { FormEvent } from 'react';
 import { MIN_INPUT_VALUE } from '@/constants/numbers';
+import NumericalInput from '../numericalInput';
 import { TOKEN_ADDRESSES } from '@/constants/tokens';
+import { TokenSingle } from '../tokenSelect';
+import { TransactionToast } from '../customToast';
+import dayjs from 'dayjs';
+import handleError from '@/utils/handleError';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import toast from 'react-hot-toast';
 import { useDictatorDAO } from '@/hooks/useContract';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
-import useWeb3Store from '@/hooks/useWeb3Store';
-import useXFOLDStaked from '@/hooks/view/usexFOLDStaked';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
-import handleError from '@/utils/handleError';
-import { formatUnits, parseUnits } from '@ethersproject/units';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import type { FormEvent } from 'react';
-import toast from 'react-hot-toast';
-import Button, { MaxButton } from '../button';
-import { TransactionToast } from '../customToast';
-import NumericalInput from '../numericalInput';
-import { TokenSingle } from '../tokenSelect';
+import useWeb3Store from '@/hooks/useWeb3Store';
 
 dayjs.extend(relativeTime);
 
