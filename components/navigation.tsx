@@ -64,7 +64,10 @@ export default function Navigation() {
         <li className="flex-1 hidden xl:block">
           <ul className="md:ml-4 flex space-x-2 xl:space-x-4">
             <li>
-              <NavigationItem href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921" text="FOLD on SushiSwap" />
+              <NavigationItem
+                href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
+                text="FOLD on SushiSwap"
+              />
             </li>
             <li>
               <NavigationItem href="/stake" text="Stake" />

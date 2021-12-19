@@ -31,7 +31,10 @@ export default function MobileMenu() {
       <Menu.Items className="absolute left-0 w-40 mt-2 origin-top-left bg-primary-400 ring-1 ring-inset ring-white ring-opacity-10 rounded-lg focus:outline-none p-1 z-50">
         <Menu.Item>
           {({ active }) => (
-            <NextLink href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921" active={active}>
+            <NextLink
+              href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
+              active={active}
+            >
               FOLD
             </NextLink>
           )}

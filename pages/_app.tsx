@@ -13,8 +13,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Manifold Finance Interface</title>
-        <meta name="description" content="Ethereum Mainnet" />
+        <title>Manifold Finance</title>
+        <meta name="description" content="FOLD Staking DApp and Dashboard" />
       </Head>
 
       <Navigation />

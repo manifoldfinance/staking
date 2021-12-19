@@ -27,5 +27,5 @@ export const LP_FARMING_POOLS: Record<SupportedChainId, FarmingPool[]> = {
       link: 'https://app.sushi.com/add/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/0xd084944d3c05CD115C09d072B9F44bA3E0E45921',
     },
   ],
-  4: undefined
+  4: undefined,
 };
