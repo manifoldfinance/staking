@@ -11,11 +11,11 @@ import dayjs from 'dayjs';
 import getFutureTimestamp from '@/utils/getFutureTimestamp';
 import handleError from '@/utils/handleError';
 import toast from 'react-hot-toast';
-//import { useDictatorDAO } from '@/hooks/useContract';
+import { useDictatorDAO } from '@/hooks/useContract';
 import useInput from '@/hooks/useInput';
 import useUserLockedUntil from '@/hooks/view/useUserLockedUntil';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { useXFOLDStaked }from '@/hooks/view/usexFOLDStaked';
+import { useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 export default function LockStake() {
   const chainId = useWeb3Store((state) => state.chainId);

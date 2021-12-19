@@ -1,34 +1,31 @@
-import type { FOLD } from '@/contracts/types';
+import type { BigNumberish } from '@ethersproject/bignumber';
+import type { DOMODAO } from '@/contracts/types';
 import { parseUnits } from '@ethersproject/units';
+import { useDictatorDAO } from '../useContract';
 import useSWR from 'swr';
-import { useFoldToken } from '../useContract';
 
-function getFoldAmountOut(contract: FOLD) {
-  return async (_: string, depositAmount: string, depositToken: string) => {
-    const getFoldAmountOutSingle = await contract.getFoldAmountOutSingle(
-      depositToken,
-      parseUnits(depositAmount),
-      1,
-    );
+function getXFoldAmountOut(contract: DOMODAO) {
+  return async (_: string, amount: BigNumberish, operatorVote: string) => {
+    const getXFoldAmountOutSingle = await contract.mint(amount, operatorVote);
 
-    return getFoldAmountOutSingle;
+    return getXFoldAmountOutSingle;
   };
 }
 
 export default function useGetFoldAmountOut(
-  depositToken: string,
-  depositAmount: string,
+  amount: BigNumberish,
+  operatorVote: string,
 ) {
-  const contract = useFoldToken();
+  const contract = useDictatorDAO();
 
   const shouldFetch =
     !!contract &&
-    typeof depositAmount === 'string' &&
-    typeof depositToken === 'string';
+    typeof amount === 'string' &&
+    typeof operatorVote === 'string';
 
   return useSWR(
-    shouldFetch ? ['GetFoldAmountOut', depositAmount, depositToken] : null,
-    getFoldAmountOut(contract),
+    shouldFetch ? ['GetFoldAmountOut', amount, operatorVote] : null,
+    getXFoldAmountOut(contract),
     {
       shouldRetryOnError: false,
     },

@@ -133,7 +133,7 @@ export default function DepositStake() {
   return (
     <form onSubmit={depositXFOLD} method="POST" className="space-y-4">
       <div className="flex justify-between">
-        <h2 className="font-medium leading-5">Deposit Stake</h2>
+        <h2 className="font-medium leading-5">Unlock FOLD</h2>
       </div>
 
       <div>
@@ -142,7 +142,7 @@ export default function DepositStake() {
 
           <div className="flex-1">
             <label className="sr-only" htmlFor="stakeDeposit">
-              Enter amount of FOLD to deposit
+              Permit FOLD to mint xFOLD
             </label>
 
             <NumericalInput
@@ -167,7 +167,7 @@ export default function DepositStake() {
       <div className="space-y-4">
         {foldNeedsApproval && (
           <Button onClick={approveXFOLD}>
-            {`Approve Manifold Finance To Spend Your FOLD`}
+            {`Permit FOLD to mint and stake xFOLD`}
           </Button>
         )}
 
@@ -175,7 +175,7 @@ export default function DepositStake() {
           disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
-          {depositInput.hasValue ? 'Deposit' : 'Enter an amount'}
+          {depositInput.hasValue ? 'Permit' : 'Enter an amount'}
         </Button>
       </div>
     </form>
