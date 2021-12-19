@@ -24,8 +24,8 @@ export default function AddTokensToMetaMask() {
               width={24}
               height={24}
               className="rounded-full h-6 w-6"
-              src={`/tokens/${`xFOLD`}.png`}
-              alt={`xFOLD`}
+              src={`/tokens/${`XFOLD`}.png`}
+              alt={`XFOLD`}
             />
           </div>
 
