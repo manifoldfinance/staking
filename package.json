@@ -20,7 +20,7 @@
     "@ethersproject/providers": "5.4.0",
     "@ethersproject/transactions": "5.4.0",
     "@ethersproject/units": "5.4.0",
-    "@ethersproject/web": "5.4.0",
+    "@ethersproject/web": "5.5.1",
     "@headlessui/react": "1.4.2",
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/jazzicon": "^2.0.0",
