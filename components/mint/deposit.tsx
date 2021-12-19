@@ -12,12 +12,11 @@ import { useMemo, useState } from 'react';
 import { BigNumber } from '@ethersproject/bignumber';
 import { BigNumberish } from 'ethers';
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
-import { DOMODAO } from '@/contracts/types';
+import { DOMODAO as DictatorDao } from '@/contracts/types';
 import type { FormEvent } from 'react';
 import NumericalInput from '../numericalInput';
 import { Popover } from '@headlessui/react';
 import { Settings } from 'react-feather';
-import { Staking } from '@/contracts/types/Staking';
 import { TOKEN_ADDRESSES } from '@/constants/tokens';
 import { TransactionToast } from '../customToast';
 import handleError from '@/utils/handleError';
@@ -112,7 +111,7 @@ export default function Deposit() {
       const slippage = slippageInput.hasValue ? slippageInput.value : '1';
 
       const poolBalance: BigNumber = await mintTokenContract.balanceOf(
-        Staking[chainId],
+        CONTRACT_ADDRESSES[chainId],
       );
 
       const maxDeposit = poolBalance.div(3);
