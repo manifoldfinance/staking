@@ -1,8 +1,8 @@
 import type MetaMaskConnector from '@/lib/connectors/metamask';
 import type WalletConnectConnector from '@/lib/connectors/walletconnect';
 import type { Web3Provider } from '@ethersproject/providers';
-import { omit } from 'omit-ts';
 import create from 'zustand';
+import { omit } from 'omit-ts';
 
 export type State = {
   account?: string;

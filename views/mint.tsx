@@ -11,7 +11,7 @@ const TAB_KEYS = {
   WITHDRAW: 'Withdraw',
 };
 
-function InvestView() {
+function MintView() {
   return (
     <section className="sm:pt-8 md:pt-16 pb-8 text-white">
       <div className="px-5 max-w-lg mx-auto">
@@ -47,4 +47,4 @@ function InvestView() {
   );
 }
 
-export default InvestView;
+export default MintView;

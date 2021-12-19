@@ -1,11 +1,12 @@
-import { SupportedChainId } from '@/constants/chains';
 import { LPRewards, UniswapV2Pair } from '@/contracts/types';
-import UniswapV2Pair_ABI from '@/contracts/UniswapV2Pair.json';
+
 import { Contract } from '@ethersproject/contracts';
+import { SupportedChainId } from '@/constants/chains';
+import UniswapV2Pair_ABI from '@/contracts/UniswapV2Pair.json';
 import type { Web3Provider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
-import useSWR from 'swr';
 import { useFoldToken } from './useContract';
+import useSWR from 'swr';
 import useWeb3Store from './useWeb3Store';
 
 function getFoldPrice(lpRewards: LPRewards, library: Web3Provider) {

@@ -1573,6 +1573,27 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
+"@web3-react/store@^8.0.13-alpha.0":
+  version "8.0.13-alpha.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/store/-/store-8.0.13-alpha.0.tgz#738664fe5d445f9a23c1a0f838dfe5b3afbf98e7"
+  integrity sha512-I1/96AILL6hhhUi/nC24JdhOdUN1AsywPqikt297DUBvJSYm8j8HRmxQ26CxWu0x66aOz6lq/2t0gd+0BlyZIg==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@web3-react/types" "^8.0.13-alpha.0"
+    zustand "^3.6.7"
+
+"@web3-react/types@^6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-6.0.7.tgz#34a6204224467eedc6123abaf55fbb6baeb2809f"
+  integrity sha512-ofGmfDhxmNT1/P/MgVa8IKSkCStFiyvXe+U5tyZurKdrtTDFU+wJ/LxClPDtFerWpczNFPUSrKcuhfPX1sI6+A==
+
+"@web3-react/types@^8.0.13-alpha.0":
+  version "8.0.13-alpha.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.0.13-alpha.0.tgz#8f2070a604a9f9b29f3b5c9c867eacf8948dfc0f"
+  integrity sha512-6R2A224sl+wtYGUuRop7uP4f5oJT4RRrESfRr8Ldikeg2k9sV7aP1pQjRxbqDVxXD1ORcS4bTbGTaCxfH/XiNg==
+  dependencies:
+    zustand "^3.6.7"
+
 "@xobotyi/scrollbar-width@^1.9.5":
   version "1.9.5"
   resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz#80224a6919272f405b87913ca13b92929bdf3c4d"
@@ -6182,7 +6203,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@^3.6.4:
+zustand@^3.6.4, zustand@^3.6.7:
   version "3.6.7"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.6.7.tgz#aab5ac0a9d6d21dce752aecd390f373ed9c9d70a"
   integrity sha512-bYWKXMfoJwZyliFgidcQ3tJC/F2f2hHq1+lhTk8dVPX2k28i4VnpnKjBGNxAd2QNliV0m455Vm+gDL8LShrV3g==

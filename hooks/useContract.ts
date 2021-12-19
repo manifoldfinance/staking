@@ -7,7 +7,7 @@ import type {
 import useWeb3Store, { State } from './useWeb3Store';
 
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
-import { Contract } from '@ethersproject/contracts';
+import { Contract } from 'ethers';
 import DOMODAO_ABI from '@/contracts/DictatorDAO.json';
 import ERC20_ABI from '@/contracts/ERC20.json';
 import FOLD_ABI from '@/contracts/FOLD.json';
