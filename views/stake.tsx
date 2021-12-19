@@ -1,14 +1,15 @@
-import DepositStake from '@/components/stake/depositStake';
-import LockStake from '@/components/stake/lockStake';
-import WithdrawStake from '@/components/stake/withdrawStake';
-import Panel from '@/components/panel';
 import { tabClassNames, tabPanelClassNames } from '@/components/tabs';
+
+import DepositStake from '@/components/stake/depositStake';
+import MintDeposit from  '@/components/mint/deposit';
+import Panel from '@/components/panel';
 import { Tab } from '@headlessui/react';
+import WithdrawStake from '@/components/stake/withdrawStake';
 
 const TAB_KEYS = {
   DEPOSIT: 'Deposit',
   WITHDRAW: 'Withdraw',
-  LOCK: 'Lock',
+  MINT: 'Deposit',
 };
 
 function StakeView() {
@@ -25,8 +26,8 @@ function StakeView() {
               {TAB_KEYS.WITHDRAW}
             </Tab>
 
-            <Tab key={TAB_KEYS.LOCK} className={tabClassNames}>
-              {TAB_KEYS.LOCK}
+            <Tab key={TAB_KEYS.MINT} className={tabClassNames}>
+              {TAB_KEYS.MINT}
             </Tab>
           </Tab.List>
 
@@ -49,10 +50,10 @@ function StakeView() {
 
             <Tab.Panel
               as={Panel}
-              key={TAB_KEYS.LOCK}
+              key={TAB_KEYS.MINT}
               className={tabPanelClassNames}
             >
-              <LockStake />
+              <MintDeposit />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

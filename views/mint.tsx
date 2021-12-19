@@ -1,13 +1,13 @@
 import { tabClassNames, tabPanelClassNames } from '@/components/tabs';
 
-import Deposit from '@/components/mint/deposit';
+import MintDeposit from '@/components/mint/deposit';
 import Panel from '@/components/panel';
 import { Tab } from '@headlessui/react';
 
 //import Withdraw from "@/components/mint/withdraw";
 
 const TAB_KEYS = {
-  DEPOSIT: 'Deposit',
+  MINTDEPOSIT: 'Deposit',
   WITHDRAW: 'Withdraw',
 };
 
@@ -17,8 +17,8 @@ function MintView() {
       <div className="px-5 max-w-lg mx-auto">
         <Tab.Group>
           <Tab.List as={Panel} className="flex space-x-1" padding="p-1">
-            <Tab key={TAB_KEYS.DEPOSIT} className={tabClassNames}>
-              {TAB_KEYS.DEPOSIT}
+            <Tab key={TAB_KEYS.MINTDEPOSIT} className={tabClassNames}>
+              {TAB_KEYS.MINTDEPOSIT}
             </Tab>
 
             <Tab key={TAB_KEYS.WITHDRAW} className={tabClassNames}>
@@ -29,10 +29,10 @@ function MintView() {
           <Tab.Panels className="mt-2">
             <Tab.Panel
               as={Panel}
-              key={TAB_KEYS.DEPOSIT}
+              key={TAB_KEYS.MINTDEPOSIT}
               className={tabPanelClassNames}
             >
-              <Deposit />
+              <MintDeposit />
             </Tab.Panel>
 
             <Tab.Panel

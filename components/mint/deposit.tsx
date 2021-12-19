@@ -32,7 +32,7 @@ import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useTotalSupply from '@/hooks/useTotalSupply';
 import useWeb3Store from '@/hooks/useWeb3Store';
 
-export default function Deposit() {
+export default function MintDeposit() {
   const account = useWeb3Store((state) => state.account);
   const chainId = useWeb3Store((state) => state.chainId);
 
