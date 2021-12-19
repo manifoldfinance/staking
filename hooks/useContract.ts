@@ -1,8 +1,8 @@
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
 import ERC20_ABI from '@/contracts/ERC20.json';
 import FOLD_ABI from '@/contracts/FOLD.json';
-import DOMODAO_ABI from '@/contracts/DictatorDao.json';
-import type { ERC20, DOMODAO as DictatorDao, FOLD, DOMODAO } from '@/contracts/types';
+import DOMODAO_ABI from '@/contracts/DictatorDAO.json';
+import type { ERC20, DOMODAO as DictatorDAO, FOLD, DOMODAO } from '@/contracts/types';
 import { Contract } from '@ethersproject/contracts';
 import { useMemo } from 'react';
 import useWeb3Store, { State } from './useWeb3Store';
