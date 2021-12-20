@@ -29,6 +29,7 @@
     "@walletconnect/ethereum-provider": "^1.6.5",
     "@web3-react/store": "^8.0.13-alpha.0",
     "@web3-react/types": "^6.0.7",
+    "@wwwr/injectedprovider": "^1.0.0",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.6",
     "eth-rpc-errors": "^4.0.3",

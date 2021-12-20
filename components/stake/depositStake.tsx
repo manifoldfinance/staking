@@ -36,7 +36,7 @@ export default function DepositStake() {
 
   const depositInput = useInput();
 
-  const xfoldContract = useTokenContract(TOKEN_ADDRESSES.FOLD[chainId]);
+  const foldContract = useFoldToken();
 
   const { data: foldAllowance, mutate: xfoldAllowanceMutate } =
     useTokenAllowance(
@@ -53,7 +53,7 @@ export default function DepositStake() {
     return;
   }, [foldAllowance, depositInput.hasValue]);
 
-  async function depositXFOLD(event: FormEvent<HTMLFormElement>) {
+  async function mintXFOLD(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const _id = toast.loading('Waiting for confirmation');
@@ -79,7 +79,7 @@ export default function DepositStake() {
         <TransactionToast
           hash={transaction.hash}
           chainId={chainId}
-          message={`Deposit ${depositAmount} FOLD`}
+          message={`Permit ${depositAmount} FOLD`}
         />,
         { id: _id },
       );
@@ -106,7 +106,7 @@ export default function DepositStake() {
     const _id = toast.loading('Waiting for confirmation');
 
     try {
-      const transaction = await xfoldContract.approve(
+      const transaction = await foldContract.approve(
         CONTRACT_ADDRESSES.DictatorDAO[chainId],
         MaxUint256,
       );
@@ -131,13 +131,13 @@ export default function DepositStake() {
   };
 
   return (
-    <form onSubmit={depositXFOLD} method="POST" className="space-y-4">
+    <form onSubmit={mintXFOLD} method="POST" className="space-y-4">
       <div className="flex justify-between">
         <h2 className="font-medium leading-5">Unlock FOLD</h2>
       </div>
 
       <div>
-        <div className="flex space-x-4 mb-2">
+        <div className="flex mb-2 space-x-4">
           <TokenSingle symbol="FOLD" />
 
           <div className="flex-1">
@@ -154,7 +154,7 @@ export default function DepositStake() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 h-5">
+        <p className="h-5 text-sm text-gray-300">
           {xfoldBalance && formattedFOLDBalance ? (
             <>
               <span>{`Balance: ${formattedFOLDBalance} FOLD`}</span>{' '}
@@ -175,7 +175,7 @@ export default function DepositStake() {
           disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
-          {depositInput.hasValue ? 'Permit' : 'Enter an amount'}
+          {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}
         </Button>
       </div>
     </form>

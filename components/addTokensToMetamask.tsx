@@ -24,7 +24,7 @@ export default function AddTokensToMetaMask() {
               width={24}
               height={24}
               className="rounded-full h-6 w-6"
-              src={`/tokens/${`XFOLD`}.png`}
+              src={`https://raw.githubusercontent.com/manifoldfinance/staking/master/public/tokens/MANIFOLD.png`}
               alt={`XFOLD`}
             />
           </div>

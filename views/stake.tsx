@@ -9,13 +9,13 @@ import WithdrawStake from '@/components/stake/withdrawStake';
 const TAB_KEYS = {
   DEPOSIT: 'Deposit',
   WITHDRAW: 'Withdraw',
-  MINT: 'Deposit',
+  MINT: 'Staking',
 };
 
 function StakeView() {
   return (
-    <section className="sm:pt-8 md:pt-16 pb-8 text-white">
-      <div className="px-5 max-w-lg mx-auto">
+    <section className="pb-8 text-white sm:pt-8 md:pt-16">
+      <div className="px-5 mx-auto max-w-lg">
         <Tab.Group>
           <Tab.List as={Panel} className="flex space-x-1" padding="p-1">
             <Tab key={TAB_KEYS.DEPOSIT} className={tabClassNames}>
