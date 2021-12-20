@@ -20,7 +20,7 @@ function MintView() {
             <Tab key={TAB_KEYS.MINTDEPOSIT} className={tabClassNames}>
               {TAB_KEYS.MINTDEPOSIT}
             </Tab>
-              <WithdrawStake />
+            <WithdrawStake />
             <Tab key={TAB_KEYS.WITHDRAW} className={tabClassNames}>
               {TAB_KEYS.WITHDRAW}
             </Tab>

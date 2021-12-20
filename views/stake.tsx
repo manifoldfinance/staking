@@ -1,7 +1,7 @@
 import { tabClassNames, tabPanelClassNames } from '@/components/tabs';
 
 import DepositStake from '@/components/stake/depositStake';
-import MintDeposit from  '@/components/mint/deposit';
+import MintDeposit from '@/components/mint/deposit';
 import Panel from '@/components/panel';
 import { Tab } from '@headlessui/react';
 import WithdrawStake from '@/components/stake/withdrawStake';
