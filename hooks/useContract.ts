@@ -11,6 +11,7 @@ import { Contract } from 'ethers';
 import DOMODAO_ABI from '@/contracts/DictatorDAO.json';
 import ERC20_ABI from '@/contracts/ERC20.json';
 import FOLD_ABI from '@/contracts/FOLD.json';
+import STAKING_ABI from '@/contracts/Staking.json';
 import { useMemo } from 'react';
 
 const chainIdSelector = (state: State) => state.chainId;
@@ -79,4 +80,10 @@ export function useStaking() {
   const chainId = useWeb3Store(chainIdSelector);
 
   return useContract<FOLD>(CONTRACT_ADDRESSES.FOLD[chainId], FOLD_ABI);
+}
+
+export function useStakingContract() {
+  const chainId = useWeb3Store(chainIdSelector);
+
+  return useContract<FOLD>(CONTRACT_ADDRESSES.Staking[chainId], STAKING_ABI);
 }

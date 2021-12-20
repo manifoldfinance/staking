@@ -1,7 +1,7 @@
 import Button, { MaxButton } from '../button';
 import { MIN_INPUT_VALUE, MaxUint256 } from '@/constants/numbers';
 import { formatUnits, parseUnits } from '@ethersproject/units';
-import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+import { useFoldToken, useTokenContract, useStakingContract, useOperatorAddress, useDictatorDAO } from '@/hooks/useContract';
 
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
 import type { FormEvent } from 'react';
@@ -24,6 +24,9 @@ export default function DepositStake() {
   const chainId = useWeb3Store((state) => state.chainId);
 
   const FOLD_ERC20 = useFoldToken();
+  const DOMO_DAO = useDictatorDAO();
+
+  const STAKING_CONTRACT = useStakingContract();
 
   const { data: xfoldBalance, mutate: xfoldBalanceMutate } = useTokenBalance(
     account,
@@ -71,32 +74,38 @@ export default function DepositStake() {
         throw new Error(`Maximum Deposit: ${formattedFOLDBalance} FOLD`);
       }
 
-      const transaction = await FOLD_ERC20.deposit(amount);
+      await FOLD_ERC20.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
+      await DOMO_DAO.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount)
+      await DOMO_DAO.mint(amount, '0xA0766B65A4f7B1da79a1AF79aC695456eFa28644')
 
-      depositInput.clear();
+      // // const transaction = await STAKING_CONTRACT.deposit('0xA0766B65A4f7B1da79a1AF79aC695456eFa28644', amount);
+      // const transaction = await FOLD_ERC20.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount);
 
-      toast.loading(
-        <TransactionToast
-          hash={transaction.hash}
-          chainId={chainId}
-          message={`Permit ${depositAmount} FOLD`}
-        />,
-        { id: _id },
-      );
+      // depositInput.clear();
+      // toast.loading(
+      //   <TransactionToast
+      //     hash={transaction.hash}
+      //     chainId={chainId}
+      //     message={`Permit ${depositAmount} FOLD`}
+      //   />,
+      //   { id: _id },
+      // );
 
-      await transaction.wait();
+      // await transaction.wait();
 
-      toast.success(
-        <TransactionToast
-          hash={transaction.hash}
-          chainId={chainId}
-          message={`Mint ${depositAmount} xFOLD`}
-        />,
-        { id: _id },
-      );
+      // toast.success(
+      //   <TransactionToast
+      //     hash={transaction.hash}
+      //     chainId={chainId}
+      //     message={`Mint ${depositAmount} xFOLD`}
+      //   />,
+      //   { id: _id },
+      // );
 
-      xfoldStakedMutate();
-      xfoldBalanceMutate();
+      // xfoldStakedMutate();
+
+      // xfoldBalanceMutate();
+
     } catch (error) {
       handleError(error, _id);
     }
@@ -172,7 +181,7 @@ export default function DepositStake() {
         )}
 
         <Button
-          disabled={!depositInput.hasValue || foldNeedsApproval}
+          // disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
           {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}
