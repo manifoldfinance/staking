@@ -105,7 +105,7 @@ export default function WithdrawStake() {
       </div>
 
       <div>
-        <div className="flex space-x-4 mb-2">
+        <div className="flex mb-2 space-x-4">
           <TokenSingle symbol="xFOLD" />
 
           <div className="flex-1">
@@ -122,7 +122,7 @@ export default function WithdrawStake() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 h-5">
+        <p className="h-5 text-sm text-gray-300">
           {xfoldStaked && formattedXFOLDStaked ? (
             <>
               <span>{`Available: ${formattedXFOLDStaked} xFOLD`}</span>{' '}

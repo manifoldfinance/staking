@@ -1,85 +1,137 @@
-import Button, { MaxButton } from '../button';
-import { MIN_INPUT_VALUE, MaxUint256 } from '@/constants/numbers';
-import { formatUnits, parseUnits } from '@ethersproject/units';
-import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+import Button, { BuyLink, MaxButton } from '../button';
+import {
+  MAX_FOLD_MINTABLE,
+  MIN_INPUT_VALUE,
+  MaxUint256,
+} from '@/constants/numbers';
+import TokenSelect, { Token } from '../tokenSelect';
+import { commify, formatUnits, parseUnits } from '@ethersproject/units';
+import { useDictatorDAO, useTokenContract } from '@/hooks/useContract';
+import { useMemo, useState } from 'react';
 
+import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumberish } from 'ethers';
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
+import { DOMODAO } from '@/contracts/types';
 import type { FormEvent } from 'react';
 import NumericalInput from '../numericalInput';
+import { Popover } from '@headlessui/react';
+import { Settings } from 'react-feather';
+
 import { TOKEN_ADDRESSES } from '@/constants/tokens';
-import { TokenSingle } from '../tokenSelect';
 import { TransactionToast } from '../customToast';
 import handleError from '@/utils/handleError';
 import toast from 'react-hot-toast';
+import useBestBuy from '@/hooks/useBestBuy';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
+import useGetFoldAmountOut from '@/hooks/view/useGetxFOLDAmountOut';
+import useGetPoolTokens from '@/hooks/view/useGetPoolTokens';
 import useInput from '@/hooks/useInput';
-import { useMemo } from 'react';
+import { useOperatorAddress } from '../../hooks/useContract';
 import useTokenAllowance from '@/hooks/view/useTokenAllowance';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
+import useTotalSupply from '@/hooks/useTotalSupply';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
-export default function DepositStake() {
+export default function Deposit() {
   const account = useWeb3Store((state) => state.account);
   const chainId = useWeb3Store((state) => state.chainId);
 
-  const FOLD_ERC20 = useFoldToken();
+  const stakingRouter = useDictatorDAO();
 
-  const { data: xfoldBalance, mutate: xfoldBalanceMutate } = useTokenBalance(
+  const { mutate: bestBuyMutate } = useBestBuy();
+
+  const { data: poolTokens } = useGetPoolTokens();
+
+  const { mutate: foldBalanceMutate } = useTokenBalance(
     account,
-    TOKEN_ADDRESSES.FOLD[chainId],
+    TOKEN_ADDRESSES.xFOLD[chainId],
   );
 
-  const { mutate: xfoldStakedMutate } = useXFOLDStaked();
+  const { data: totalSupply, mutate: totalSupplyMutate } = useTotalSupply(
+    TOKEN_ADDRESSES.xFOLD[chainId],
+  );
 
-  const formattedFOLDBalance = useFormattedBigNumber(xfoldBalance);
+  const formattedTotalSupply = useFormattedBigNumber(totalSupply, 0);
 
-  const depositInput = useInput();
+  const [mintToken, mintTokenSet] = useState<Token>();
 
-  const foldContract = useFoldToken();
+  const mintTokenContract = useTokenContract(mintToken?.address);
 
-  const { data: foldAllowance, mutate: xfoldAllowanceMutate } =
+  const { data: mintTokenBalance, mutate: mintTokenBalanceMutate } =
+    useTokenBalance(account, mintToken?.address);
+  const { data: mintTokenAllowance, mutate: mintTokenAllowanceMutate } =
     useTokenAllowance(
-      TOKEN_ADDRESSES.xFOLD[chainId],
+      mintToken?.address,
       account,
-      CONTRACT_ADDRESSES.DictatorDAO[chainId],
+      CONTRACT_ADDRESSES.Staking[chainId],
     );
 
-  const foldNeedsApproval = useMemo(() => {
-    if (!!foldAllowance && depositInput.hasValue) {
-      return foldAllowance.isZero();
+  const formattedDepositBalance = useFormattedBigNumber(mintTokenBalance, 4);
+
+  const mintInput = useInput();
+  const slippageInput = useInput();
+  const liquidationFeeInput = useInput();
+
+  const mintTokenNeedsApproval = useMemo(() => {
+    if (!!mintTokenAllowance && mintInput.hasValue) {
+      return mintTokenAllowance.isZero();
     }
 
     return;
-  }, [foldAllowance, depositInput.hasValue]);
+  }, [mintTokenAllowance, mintInput.hasValue]);
 
-  async function mintXFOLD(event: FormEvent<HTMLFormElement>) {
+  const { data: foldAmountOut } = useGetFoldAmountOut(
+    mintInput?.value,
+    mintToken?.address,
+  );
+
+  // @ts-ignore
+  const formattedFoldAmountOut = useFormattedBigNumber(foldAmountOut);
+
+  async function tokenDeposit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const _id = toast.loading('Waiting for confirmation');
 
     try {
-      const depositAmount = depositInput.value;
+      const mintAmount = mintInput.value;
 
-      if (Number(depositAmount) <= MIN_INPUT_VALUE) {
-        throw new Error(`Minium Deposit: ${MIN_INPUT_VALUE} FOLD`);
+      if (Number(mintAmount) <= MIN_INPUT_VALUE) {
+        throw new Error(
+          `Minium Deposit: ${MIN_INPUT_VALUE} ${mintToken.symbol}`,
+        );
       }
 
-      const amount = parseUnits(depositAmount);
+      const tokenAmountIn = parseUnits(mintAmount);
 
-      if (amount.gt(xfoldBalance)) {
-        throw new Error(`Maximum Deposit: ${formattedFOLDBalance} FOLD`);
+      const liquidationFeeBigNumber = liquidationFeeInput.hasValue
+        ? BigNumber.from(Number(liquidationFeeInput.value) * 10000)
+        : BigNumber.from(10 * 10000);
+
+      const slippage = slippageInput.hasValue ? slippageInput.value : '1';
+
+      const poolBalance: BigNumber = await mintTokenContract.balanceOf(
+        CONTRACT_ADDRESSES.Staking[chainId],
+      );
+
+      const maxDeposit = poolBalance.div(3);
+
+      if (tokenAmountIn.gt(maxDeposit)) {
+        const fmMaxDeposit = parseFloat(formatUnits(maxDeposit)).toFixed(2);
+
+        throw new Error(`Maximum Deposit: ${fmMaxDeposit} ${mintToken.symbol}`);
       }
 
-      const transaction = await FOLD_ERC20.deposit(amount);
-
-      depositInput.clear();
+      // @ts-ignore
+      const transaction = await stakingRouter.mint(amount, useOperatorAddress);
+      //mintInput.clear();
 
       toast.loading(
         <TransactionToast
-          hash={transaction.hash}
+          message={`Deposit ${mintAmount} ${mintToken.symbol}`}
           chainId={chainId}
-          message={`Permit ${depositAmount} FOLD`}
+          hash={transaction.hash}
         />,
         { id: _id },
       );
@@ -88,96 +140,220 @@ export default function DepositStake() {
 
       toast.success(
         <TransactionToast
-          hash={transaction.hash}
+          message={`Deposit ${mintAmount} ${mintToken.symbol}`}
           chainId={chainId}
-          message={`Mint ${depositAmount} xFOLD`}
+          hash={transaction.hash}
         />,
         { id: _id },
       );
 
-      xfoldStakedMutate();
-      xfoldBalanceMutate();
+      foldBalanceMutate();
+      mintTokenBalanceMutate();
+      totalSupplyMutate();
+      bestBuyMutate();
     } catch (error) {
       handleError(error, _id);
     }
   }
 
-  async function approveXFOLD() {
+  async function approveDepositToken() {
     const _id = toast.loading('Waiting for confirmation');
 
     try {
-      const transaction = await foldContract.approve(
-        CONTRACT_ADDRESSES.DictatorDAO[chainId],
+      const transaction = await mintTokenContract.approve(
+        CONTRACT_ADDRESSES.Staking[chainId],
         MaxUint256,
       );
 
-      toast.loading(`Approve FOLD`, { id: _id });
+      toast.loading(`Approve ${mintToken.symbol}`, { id: _id });
 
       await transaction.wait();
 
-      toast.success(`Approve FOLD`, { id: _id });
+      toast.success(`Approve ${mintToken.symbol}`, { id: _id });
 
-      xfoldAllowanceMutate();
+      mintTokenAllowanceMutate();
     } catch (error) {
       handleError(error, _id);
     }
   }
 
   const inputIsMax =
-    !!xfoldBalance && depositInput.value === formatUnits(xfoldBalance);
+    !!mintTokenBalance && mintInput.value === formatUnits(mintTokenBalance);
 
   const setMax = () => {
-    depositInput.setValue(formatUnits(xfoldBalance));
+    mintInput.setValue(formatUnits(mintTokenBalance));
   };
 
   return (
-    <form onSubmit={mintXFOLD} method="POST" className="space-y-4">
+    <form className="space-y-4" onSubmit={tokenDeposit}>
       <div className="flex justify-between">
-        <h2 className="font-medium leading-5">Unlock FOLD</h2>
+        <h2 className="font-medium leading-5">Mint xFOLD</h2>
+
+        <Popover className="relative">
+          <Popover.Button className="block w-5 h-5 text-gray-300 focus:outline-none hover:text-opacity-80">
+            <Settings size={20} />
+          </Popover.Button>
+
+          <Popover.Panel
+            className="absolute right-0 z-10 px-4 mt-3 w-64 sm:px-0"
+            unmount={false}
+          >
+            <div className="relative p-4 rounded-lg ring-1 ring-inset ring-white ring-opacity-20 bg-primary-300">
+              <div className="space-y-4">
+                <p className="leading-none">Advanced</p>
+
+                <div>
+                  <label
+                    className="block mb-2 text-sm text-gray-300"
+                    htmlFor="slippage"
+                  >
+                    Zap
+                  </label>
+
+                  <div className="flex px-3 py-1 rounded-md bg-primary focus-within:ring-4">
+                    <input
+                      autoComplete="off"
+                      autoCorrect="off"
+                      inputMode="numeric"
+                      id="slippage"
+                      name="slippage"
+                      min={0}
+                      max={99}
+                      step={1}
+                      placeholder="1"
+                      className="hide-number-input-arrows w-full text-right appearance-none bg-transparent focus:outline-none mr-0.5 text-white"
+                      spellCheck="false"
+                      type="number"
+                      {...slippageInput.eventBind}
+                    />
+
+                    <span>%</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    className="block mb-2 text-sm text-gray-300"
+                    htmlFor="liquidationFee"
+                  >
+                    Liquidity Position Price
+                  </label>
+
+                  <div className="flex px-3 py-1 rounded-md bg-primary focus-within:ring-4">
+                    <input
+                      autoComplete="off"
+                      autoCorrect="off"
+                      inputMode="numeric"
+                      id="liquidationFee"
+                      name="liquidationFee"
+                      placeholder="10"
+                      step={0.1}
+                      max={10}
+                      min={0}
+                      className="hide-number-input-arrows w-full text-right appearance-none bg-transparent focus:outline-none mr-0.5 text-white"
+                      spellCheck="false"
+                      type="number"
+                      {...slippageInput.eventBind}
+                    />
+
+                    <span>%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Popover.Panel>
+        </Popover>
       </div>
 
       <div>
         <div className="flex mb-2 space-x-4">
-          <TokenSingle symbol="FOLD" />
+          <TokenSelect
+            value={mintToken}
+            onChange={mintTokenSet}
+            tokens={poolTokens}
+            order="DESC"
+          />
 
           <div className="flex-1">
-            <label className="sr-only" htmlFor="stakeDeposit">
-              Permit FOLD to mint xFOLD
+            <label className="sr-only" htmlFor="mintAmount">
+              Enter amount of token
             </label>
 
             <NumericalInput
-              id="stakeDeposit"
-              name="stakeDeposit"
+              name="mintAmount"
+              id="mintAmount"
               required
-              {...depositInput.valueBind}
+              {...mintInput.valueBind}
             />
           </div>
         </div>
 
         <p className="h-5 text-sm text-gray-300">
-          {xfoldBalance && formattedFOLDBalance ? (
+          {!!mintToken && mintTokenBalance && formattedDepositBalance ? (
             <>
-              <span>{`Balance: ${formattedFOLDBalance} FOLD`}</span>{' '}
-              {!inputIsMax && <MaxButton onClick={setMax} />}
+              <span>{`Balance: ${formattedDepositBalance} ${mintToken.symbol}`}</span>{' '}
+              {!inputIsMax && !mintTokenBalance.isZero() && (
+                <MaxButton onClick={setMax} />
+              )}
+              {mintTokenBalance.isZero() && (
+                <BuyLink tokenSymbol={mintToken.symbol} />
+              )}
             </>
           ) : null}
         </p>
       </div>
 
+      <div className="w-full h-px bg-primary-300" />
+
+      <div className="flex justify-between">
+        <p className="leading-none">xFOLD Received</p>
+
+        <p className="leading-none">
+          {formattedFoldAmountOut === '0.00' ? `-` : formattedFoldAmountOut}
+        </p>
+      </div>
+
+      <div className="flex justify-between">
+        <p className="leading-none">xFOLD Supply</p>
+
+        <p className="leading-none">{`${formattedTotalSupply} / ${commify(
+          MAX_FOLD_MINTABLE,
+        )}`}</p>
+      </div>
+
       <div className="space-y-4">
-        {foldNeedsApproval && (
-          <Button onClick={approveXFOLD}>
-            {`Permit FOLD to mint and stake xFOLD`}
+        {mintTokenNeedsApproval && (
+          <Button onClick={approveDepositToken}>
+            {`Approve FOLD to mint  Your ${mintToken.symbol}`}
           </Button>
         )}
 
+
         <Button
-          disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
-          {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}
+          {mintInput.hasValue && !!mintToken ? `Deposit` : `Enter an amount`}
         </Button>
       </div>
     </form>
   );
+}
+
+/**
+                                const allowance = parseFloat(formatUnits(
+                                    await tokenContractWithSigner.allowance(account, misoWithSigner.address), 
+                                    await tokenContractWithSigner.decimals()
+                                ));
+                                if (allowance > tokenAmount) {
+                                    alert('You already approved the contract, please commit!');
+                                    return;
+                                }
+ */
+function amount(
+  amount: any,
+  BigNumberish: any,
+  operatorVote: any,
+  string: any,
+) {
+  throw new Error('Function not implemented.');
 }

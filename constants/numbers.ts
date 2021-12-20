@@ -25,6 +25,6 @@ export const MaxUint256 = BigInt(
   '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
 );
 
-export const MIN_INPUT_VALUE = 0.00000000000000001;
+export const MIN_INPUT_VALUE = 1;
 
 export const MAX_FOLD_MINTABLE = 2_000_000;

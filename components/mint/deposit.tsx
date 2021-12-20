@@ -189,27 +189,27 @@ export default function MintDeposit() {
         <h2 className="font-medium leading-5">Mint xFOLD</h2>
 
         <Popover className="relative">
-          <Popover.Button className="block h-5 w-5 focus:outline-none text-gray-300 hover:text-opacity-80">
+          <Popover.Button className="block w-5 h-5 text-gray-300 focus:outline-none hover:text-opacity-80">
             <Settings size={20} />
           </Popover.Button>
 
           <Popover.Panel
-            className="absolute z-10 w-64 px-4 mt-3 sm:px-0 right-0"
+            className="absolute right-0 z-10 px-4 mt-3 w-64 sm:px-0"
             unmount={false}
           >
-            <div className="relative bg-primary-300 p-4 rounded-lg ring-1 ring-inset ring-white ring-opacity-20">
+            <div className="relative p-4 rounded-lg ring-1 ring-inset ring-white ring-opacity-20 bg-primary-300">
               <div className="space-y-4">
                 <p className="leading-none">Advanced</p>
 
                 <div>
                   <label
-                    className="block text-sm mb-2 text-gray-300"
+                    className="block mb-2 text-sm text-gray-300"
                     htmlFor="slippage"
                   >
                     Zap
                   </label>
 
-                  <div className="px-3 py-1 rounded-md bg-primary flex focus-within:ring-4">
+                  <div className="flex px-3 py-1 rounded-md bg-primary focus-within:ring-4">
                     <input
                       autoComplete="off"
                       autoCorrect="off"
@@ -232,13 +232,13 @@ export default function MintDeposit() {
 
                 <div>
                   <label
-                    className="block text-sm mb-2 text-gray-300"
+                    className="block mb-2 text-sm text-gray-300"
                     htmlFor="liquidationFee"
                   >
                     Liquidity Position Price
                   </label>
 
-                  <div className="px-3 py-1 rounded-md bg-primary flex focus-within:ring-4">
+                  <div className="flex px-3 py-1 rounded-md bg-primary focus-within:ring-4">
                     <input
                       autoComplete="off"
                       autoCorrect="off"
@@ -265,7 +265,7 @@ export default function MintDeposit() {
       </div>
 
       <div>
-        <div className="flex space-x-4 mb-2">
+        <div className="flex mb-2 space-x-4">
           <TokenSelect
             value={mintToken}
             onChange={mintTokenSet}
@@ -287,7 +287,7 @@ export default function MintDeposit() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 h-5">
+        <p className="h-5 text-sm text-gray-300">
           {!!mintToken && mintTokenBalance && formattedDepositBalance ? (
             <>
               <span>{`Balance: ${formattedDepositBalance} ${mintToken.symbol}`}</span>{' '}
@@ -302,7 +302,7 @@ export default function MintDeposit() {
         </p>
       </div>
 
-      <div className="h-px w-full bg-primary-300" />
+      <div className="w-full h-px bg-primary-300" />
 
       <div className="flex justify-between">
         <p className="leading-none">xFOLD Received</p>

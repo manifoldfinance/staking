@@ -1,0 +1,54 @@
+import Button, { MaxButton } from '../button';
+import { MIN_INPUT_VALUE, MaxUint256 } from '@/constants/numbers';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { useFoldToken, useTokenContract } from '@/hooks/useContract';
+
+import { CONTRACT_ADDRESSES } from '@/constants/contracts';
+import type { FormEvent } from 'react';
+import NumericalInput from '../numericalInput';
+import { TOKEN_ADDRESSES } from '@/constants/tokens';
+import { TokenSingle } from '../tokenSelect';
+import { TransactionToast } from '../customToast';
+import handleError from '@/utils/handleError';
+import toast from 'react-hot-toast';
+import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
+import useInput from '@/hooks/useInput';
+import { useMemo } from 'react';
+import useTokenAllowance from '@/hooks/view/useTokenAllowance';
+import useTokenBalance from '@/hooks/view/useTokenBalance';
+import useWeb3Store from '@/hooks/useWeb3Store';
+
+
+import ERC20_ABI from '@/contracts/ERC20.json';
+
+import React, {useState} from "react";
+import {useWeb3React} from "@web3-react/core";
+import {Web3Provider} from "@ethersproject/providers";
+import {TxPendingModal} from "./TxPendingModal";
+import { BigNumber, Contract, providers } from "ethers";
+
+import { formatUnits } from "@ethersproject/units";
+
+import DOMODAO_ABI from '@/contracts/DictatorDAO.json';
+export function Mint(): JSX.Element {
+<Button
+                        className="px-12 m-4 text-lg font-medium text-white bg-black rounded focus:outline-none"
+                        onClick={() => {
+                            async function harvest() {
+                                if (active && connector && account && chainId) {
+                                    const web3Provider = new providers.Web3Provider(await connector.getProvider());
+                                    const DictatorDAO: Contract = new Contract(CONTRACT_ADDRESSES.Staking[chainId],, DOMODAO_ABI, web3Provider);
+                                    const DictatorDAOWithSigner: Contract = DictatorDAO.connect(web3Provider.getSigner());
+                                    const tx = await DictatorDAOWithSigner.mint(poolInfos.pid, 0);
+                                    setTxPending(tx.hash);
+                                    await web3Provider.waitForTransaction(tx.hash, 1);
+                                    setTxPending('');
+                                    alert('Transaction successfully mined !');
+                                } else {
+                                    alert("Please connect wallet and enter an address");
+                                }
+                            }
+                            harvest();
+                        }}
+                        >Harvest
+                        </Button>
