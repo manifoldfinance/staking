@@ -1,10 +1,18 @@
 [
   {
-    "question": "What is the xFOLD?",
-    "answer": ""
+    "question": "What is FOLD?",
+    "answer": "FOLD is an ERC20 token that enables protocol governance for Manifold Finance"
   },
   {
-    "question": "When do tributes pay out?",
-    "answer": ""
+    "question": "How does staking work?",
+    "answer": "When you mint xFOLD with FOLD, you delegate your governance to Manifold Finance and in return you get a tribute"
+  },
+  {
+    "question": "What are tributes?",
+    "answer": "Tributes are rewards, compensation, payments, etc, that xFOLD holders receive from the protocol."
+  },
+  {
+    "question": "I need help, where should I go?",
+    "answer": "forums.manifoldfinance.com"
   }
 ]

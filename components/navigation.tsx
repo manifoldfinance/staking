@@ -29,17 +29,17 @@ const WalletModal = dynamic(() => import('../components/walletModal'), {
 
 export default function Navigation() {
   return (
-    <nav className="px-5 md:px-8 py-4 text-white">
-      <ul className="flex items-center justify-between">
+    <nav className="px-5 py-4 text-white md:px-8">
+      <ul className="flex justify-between items-center">
         <li className="flex-shrink-0">
           <div className="flex items-center">
-            <div className="block xl:hidden mr-2">
+            <div className="block mr-2 xl:hidden">
               <MobileMenu />
             </div>
 
             <Link href="#">
               <a
-                className="flex items-center md:space-x-2 focus:outline-none focus:text-gray-300 hover:text-gray-300 transition-colors"
+                className="flex items-center transition-colors md:space-x-2 focus:outline-none focus:text-gray-300 hover:text-gray-300"
                 aria-label="Home"
               >
                 <img
@@ -50,7 +50,7 @@ export default function Navigation() {
                 />
 
                 <span
-                  className="hidden md:block text-2xl font-light tracking-wide leading-none select-none"
+                  className="hidden text-2xl font-light tracking-wide leading-none select-none md:block"
                   role="img"
                   aria-label="Manifold Finance"
                 >
@@ -61,14 +61,8 @@ export default function Navigation() {
           </div>
         </li>
 
-        <li className="flex-1 hidden xl:block">
-          <ul className="md:ml-4 flex space-x-2 xl:space-x-4">
-            <li>
-              <NavigationItem
-                href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
-                text="FOLD on SushiSwap"
-              />
-            </li>
+        <li className="hidden flex-1 xl:block">
+          <ul className="flex space-x-2 md:ml-4 xl:space-x-4">
             <li>
               <NavigationItem href="/stake" text="Stake" />
             </li>
@@ -81,7 +75,7 @@ export default function Navigation() {
           </ul>
         </li>
 
-        <li className="flex-grow-1 flex-shrink-0 flex justify-end md:space-x-4">
+        <li className="flex flex-shrink-0 justify-end flex-grow-1 md:space-x-4">
           <NetworkIndicator />
 
           <AddTokensToMetaMask />

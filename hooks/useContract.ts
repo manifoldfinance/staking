@@ -47,7 +47,7 @@ export function useOperatorAddress() {
   const chainId = useWeb3Store(chainIdSelector);
 
   return useContract<DOMODAO>(
-    CONTRACT_ADDRESSES.Operator[chainId],
+    CONTRACT_ADDRESSES.Staking[chainId],
     DOMODAO_ABI,
   );
 }

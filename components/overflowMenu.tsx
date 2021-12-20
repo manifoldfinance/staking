@@ -20,11 +20,11 @@ const menuItemClassNames =
 export default function OverflowMenu() {
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="inline-flex space-x-2 w-full px-3 py-3 bg-primary-400 ring-1 ring-inset ring-white ring-opacity-10 text-sm rounded-xl focus:outline-none focus-visible:ring-opacity-20 hover:ring-opacity-20">
+      <Menu.Button className="inline-flex px-3 py-3 space-x-2 w-full text-sm rounded-xl ring-1 ring-inset ring-white ring-opacity-10 bg-primary-400 focus:outline-none focus-visible:ring-opacity-20 hover:ring-opacity-20">
         <MoreHorizontal size={20} />
       </Menu.Button>
 
-      <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-primary-400 ring-1 ring-inset ring-white ring-opacity-10 rounded-lg focus:outline-none p-1 z-50">
+      <Menu.Items className="absolute right-0 z-50 p-1 mt-2 w-56 rounded-lg ring-1 ring-inset ring-white ring-opacity-10 origin-top-right bg-primary-400 focus:outline-none">
         <Menu.Item>
           {({ active }) => (
             <a
@@ -33,7 +33,7 @@ export default function OverflowMenu() {
               rel="noopener noreferrer"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
             >
-              Buy FOLD on SushiSwap
+              FOLD
             </a>
           )}
         </Menu.Item>
