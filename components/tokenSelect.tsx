@@ -41,8 +41,8 @@ export default function TokenSelect({
       <div className="relative">
         <Listbox.Button
           className={classNames(
-            'relative py-2 pr-10 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4 text-lg leading-6 flex items-center space-x-2',
-            value ? 'bg-primary pl-2' : 'bg-white text-primary pl-4',
+            'flex relative items-center py-2 pr-10 space-x-2 text-lg leading-6 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4',
+            value ? 'pl-2 bg-primary' : 'pl-4 bg-white text-primary',
           )}
         >
           {value && (
@@ -57,16 +57,16 @@ export default function TokenSelect({
             />
           )}
 
-          <span className="block truncate font-medium">
-            {value ? value.symbol : 'Select a token'}
+          <span className="block font-medium truncate">
+            {value ? value.symbol : 'Protocol Activity'}
           </span>
 
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <span className="flex absolute inset-y-0 right-0 items-center pr-2 pointer-events-none">
             <ChevronDown size={20} aria-hidden="true" />
           </span>
         </Listbox.Button>
 
-        <Listbox.Options className="absolute max-h-60 w-48 mt-2 overflow-auto bg-primary-300 ring-1 ring-inset ring-white ring-opacity-20 rounded-lg focus:outline-none p-1">
+        <Listbox.Options className="overflow-auto absolute p-1 mt-2 w-48 max-h-60 rounded-lg ring-1 ring-inset ring-white ring-opacity-20 bg-primary-300 focus:outline-none">
           {tokens?.sort(sortTokens)?.map((token, tokenIndex) => (
             <Listbox.Option
               key={tokenIndex}
@@ -86,10 +86,10 @@ export default function TokenSelect({
                     selected ? 'opacity-50' : '',
                   )}
                 >
-                  <div className="flex-shrink-0 flex items-center space-x-2">
+                  <div className="flex flex-shrink-0 items-center space-x-2">
                     <img
                       alt={token.symbol}
-                      className="rounded-full bg-primary h-5 w-5"
+                      className="w-5 h-5 rounded-full bg-primary"
                       decoding="async"
                       height={20}
                       loading="lazy"
@@ -100,7 +100,7 @@ export default function TokenSelect({
                     <span
                       className={classNames(
                         selected ? 'font-medium' : 'font-normal',
-                        'block truncate leading-5',
+                        'block leading-5 truncate',
                       )}
                     >
                       {token.symbol}
@@ -124,16 +124,16 @@ export default function TokenSelect({
 
 export function TokenSingle({ symbol }: { symbol: string }) {
   return (
-    <div className="relative inline-flex py-2 pl-2 pr-3 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4 text-lg leading-6 items-center space-x-2 bg-primary">
+    <div className="inline-flex relative items-center py-2 pr-3 pl-2 space-x-2 text-lg leading-6 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4 bg-primary">
       <img
         alt={symbol}
-        className="rounded-full h-6 w-6"
+        className="w-6 h-6 rounded-full"
         height={24}
-        src={`/tokens/${symbol}.png`}
+        src={`https://raw.githubusercontent.com/manifoldfinance/website/master/public/XFOLD.png`}
         width={24}
       />
 
-      <span className="block truncate font-medium">{symbol}</span>
+      <span className="block font-medium truncate">{symbol}</span>
     </div>
   );
 }
@@ -146,17 +146,17 @@ export function TokenPair({
   symbol: string;
 }) {
   return (
-    <div className="relative inline-flex py-2 pl-2 pr-3 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4 text-lg leading-6 items-center space-x-2 bg-primary">
+    <div className="inline-flex relative items-center py-2 pr-3 pl-2 space-x-2 text-lg leading-6 text-left rounded-xl cursor-default focus:outline-none focus-visible:ring-4 bg-primary">
       <div className="flex -space-x-2">
         {!!pairs ? (
           pairs?.map((pair, pairIndex) => (
             <div className="relative" key={pairIndex}>
-              <div className="absolute ring-1 ring-inset ring-white ring-opacity-20 rounded-full w-6 h-6" />
+              <div className="absolute w-6 h-6 rounded-full ring-1 ring-inset ring-white ring-opacity-20" />
 
               <img
                 width={24}
                 height={24}
-                className="rounded-full w-6 h-6"
+                className="w-6 h-6 rounded-full"
                 src={`https://raw.githubusercontent.com/manifoldfinance/website/master/public/token.png`}
                 alt={pair}
               />
@@ -164,13 +164,13 @@ export function TokenPair({
           ))
         ) : (
           <>
-            <div className="ring-1 ring-inset ring-white ring-opacity-20 rounded-full w-6 h-6 bg-primary-400" />
-            <div className="ring-1 ring-inset ring-white ring-opacity-20 rounded-full w-6 h-6 bg-primary-400" />
+            <div className="w-6 h-6 rounded-full ring-1 ring-inset ring-white ring-opacity-20 bg-primary-400" />
+            <div className="w-6 h-6 rounded-full ring-1 ring-inset ring-white ring-opacity-20 bg-primary-400" />
           </>
         )}
       </div>
 
-      <span className="block truncate font-medium">{symbol}</span>
+      <span className="block font-medium truncate">{symbol}</span>
     </div>
   );
 }
