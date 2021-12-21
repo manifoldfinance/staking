@@ -18,25 +18,25 @@ export default function AddTokensToMetaMask() {
 
         <div className="flex -space-x-2">
           <div className="relative">
-            <div className="absolute ring-1 ring-inset ring-white ring-opacity-20 rounded-full h-6 w-6" />
+            <div className="absolute w-6 h-6 rounded-full ring-1 ring-inset ring-white ring-opacity-20" />
 
             <img
               width={24}
               height={24}
-              className="rounded-full h-6 w-6"
+              className="w-6 h-6 rounded-full"
               src={`https://raw.githubusercontent.com/manifoldfinance/staking/master/public/tokens/MANIFOLD.png`}
               alt={`XFOLD`}
             />
           </div>
 
           <div className="relative">
-            <div className="absolute ring-1 ring-inset ring-white ring-opacity-20 rounded-full h-6 w-6" />
+            <div className="absolute w-6 h-6 rounded-full ring-1 ring-inset ring-white ring-opacity-20" />
 
             <img
               width={24}
               height={24}
-              className="rounded-full h-6 w-6"
-              src={`/tokens/${`FOLD`}.png`}
+              className="w-6 h-6 rounded-full"
+              src={`https://raw.githubusercontent.com/manifoldfinance/website/master/public/token.png`}
               alt={`FOLD`}
             />
           </div>
