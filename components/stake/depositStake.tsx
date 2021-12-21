@@ -1,7 +1,7 @@
 import Button, { MaxButton } from '../button';
 import { MIN_INPUT_VALUE, MaxUint256 } from '@/constants/numbers';
 import { formatUnits, parseUnits } from '@ethersproject/units';
-import { useFoldToken, useTokenContract, useStakingContract, useOperatorAddress, useDictatorDAO } from '@/hooks/useContract';
+import { useFoldToken, useDictatorDAO } from '@/hooks/useContract';
 
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
 import type { FormEvent } from 'react';
@@ -23,10 +23,7 @@ export default function DepositStake() {
   const account = useWeb3Store((state) => state.account);
   const chainId = useWeb3Store((state) => state.chainId);
 
-  const FOLD_ERC20 = useFoldToken();
   const DOMO_DAO = useDictatorDAO();
-
-  const STAKING_CONTRACT = useStakingContract();
 
   const { data: xfoldBalance, mutate: xfoldBalanceMutate } = useTokenBalance(
     account,
@@ -43,7 +40,7 @@ export default function DepositStake() {
 
   const { data: foldAllowance, mutate: xfoldAllowanceMutate } =
     useTokenAllowance(
-      TOKEN_ADDRESSES.xFOLD[chainId],
+      TOKEN_ADDRESSES.FOLD[chainId],
       account,
       CONTRACT_ADDRESSES.DictatorDAO[chainId],
     );
@@ -65,7 +62,7 @@ export default function DepositStake() {
       const depositAmount = depositInput.value;
 
       if (Number(depositAmount) <= MIN_INPUT_VALUE) {
-        throw new Error(`Minium Deposit: ${MIN_INPUT_VALUE} FOLD`);
+        throw new Error(`Minimum Deposit: ${MIN_INPUT_VALUE} FOLD`);
       }
 
       const amount = parseUnits(depositAmount);
@@ -74,7 +71,7 @@ export default function DepositStake() {
         throw new Error(`Maximum Deposit: ${formattedFOLDBalance} FOLD`);
       }
 
-      await FOLD_ERC20.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
+      // await foldContract.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
       await DOMO_DAO.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount)
       await DOMO_DAO.mint(amount, '0xA0766B65A4f7B1da79a1AF79aC695456eFa28644')
 
@@ -114,10 +111,22 @@ export default function DepositStake() {
   async function approveXFOLD() {
     const _id = toast.loading('Waiting for confirmation');
 
+    const depositAmount = depositInput.value;
+
+    if (Number(depositAmount) <= MIN_INPUT_VALUE) {
+      throw new Error(`Minimum Deposit: ${MIN_INPUT_VALUE} FOLD`);
+    }
+
+    const amount = parseUnits(depositAmount);
+
+    if (amount.gt(xfoldBalance)) {
+      throw new Error(`Maximum Deposit: ${formattedFOLDBalance} FOLD`);
+    }
+
     try {
       const transaction = await foldContract.approve(
         CONTRACT_ADDRESSES.DictatorDAO[chainId],
-        MaxUint256,
+        amount,
       );
 
       toast.loading(`Approve FOLD`, { id: _id });
@@ -181,7 +190,7 @@ export default function DepositStake() {
         )}
 
         <Button
-          // disabled={!depositInput.hasValue || foldNeedsApproval}
+          disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
           {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}
