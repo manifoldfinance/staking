@@ -1,10 +1,11 @@
 {
   "name": "@manifoldfinance/staking",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "CI='' npx next build",
+    "build": "next build",
+    "fmt": "npx prettier --config .prettierrc.json --write '**/*.ts'",
     "start": "next start",
     "lint": "next lint",
     "type-check": "npx tsc --pretty --noEmit",
@@ -68,7 +69,7 @@
     "eslint-config-prettier": "^8.3.0",
     "lint-staged": "^11.1.2",
     "postcss": "^8.3.6",
-    "prettier": "^2.3.2",
+    "prettier": "^2.5.1",
     "pretty-quick": "^3.1.1",
     "tailwindcss": "^2.2.8",
     "typechain": "5.1.2",

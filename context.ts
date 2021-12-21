@@ -13,9 +13,7 @@ import {
 const NO_VERSION = -1;
 const CURRENT_VERSION = 0;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function serializeTokens(
-  tokens: Token[],
-): {
+function serializeTokens(tokens: Token[]): {
   chainId: number;
   address: string;
   decimals: number;
