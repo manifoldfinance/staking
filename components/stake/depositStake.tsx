@@ -181,7 +181,7 @@ export default function DepositStake() {
         )}
 
         <Button
-          // disabled={!depositInput.hasValue || foldNeedsApproval}
+          disabled={!depositInput.hasValue || foldNeedsApproval}
           type="submit"
         >
           {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}

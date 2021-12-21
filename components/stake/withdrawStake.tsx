@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import handleError from '@/utils/handleError';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import toast from 'react-hot-toast';
-import { useDictatorDAO } from '@/hooks/useContract';
+import { useDictatorDAO, useOperatorAddress, useFoldToken } from '@/hooks/useContract';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
@@ -31,7 +31,8 @@ export default function WithdrawStake() {
 
   const { data: xfoldStaked, mutate: xfoldStakedMutate } = useXFOLDStaked();
 
-  const XFOLD = useDictatorDAO();
+  const DOMO_DAO = useDictatorDAO();
+  const FOLD_ERC20 = useFoldToken();
 
   const withdrawInput = useInput();
 
@@ -55,37 +56,41 @@ export default function WithdrawStake() {
         throw new Error(`Maximum Withdraw: ${formattedXFOLDStaked} XFOLD`);
       }
 
-      const transaction = await XFOLD.burn(
-        // @ts-ignore
-        to,
-        // @ts-ignore
-        shares,
-      );
+      // await XFOLD.burn('', amount)
+      await DOMO_DAO.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
+      await DOMO_DAO.burn('0xd084944d3c05cd115c09d072b9f44ba3e0e45921', amount);
 
-      withdrawInput.clear();
+      // const transaction = await XFOLD.burn(
+      //   // @ts-ignore
+      //   to,
+      //   // @ts-ignore
+      //   shares,
+      // );
 
-      toast.loading(
-        <TransactionToast
-          hash={transaction.hash}
-          chainId={chainId}
-          message={`Withdraw ${withdrawAmount} FOLD`}
-        />,
-        { id: _id },
-      );
+      // withdrawInput.clear();
 
-      await transaction.wait();
+      // toast.loading(
+      //   <TransactionToast
+      //     hash={transaction.hash}
+      //     chainId={chainId}
+      //     message={`Withdraw ${withdrawAmount} FOLD`}
+      //   />,
+      //   { id: _id },
+      // );
 
-      toast.success(
-        <TransactionToast
-          hash={transaction.hash}
-          chainId={chainId}
-          message={`Withdraw ${withdrawAmount} FOLD`}
-        />,
-        { id: _id },
-      );
+      // await transaction.wait();
 
-      xfoldStakedMutate();
-      xfoldBalanceMutate();
+      // toast.success(
+      //   <TransactionToast
+      //     hash={transaction.hash}
+      //     chainId={chainId}
+      //     message={`Withdraw ${withdrawAmount} FOLD`}
+      //   />,
+      //   { id: _id },
+      // );
+
+      // xfoldStakedMutate();
+      // xfoldBalanceMutate();
     } catch (error) {
       handleError(error, _id);
     }
