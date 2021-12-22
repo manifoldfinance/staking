@@ -1925,10 +1925,10 @@
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.1.0.tgz#88c35b72e79a20b79bb4c9b3e2817241a1c9f4f9"
   integrity sha512-XQr74QaLeMiqhStEhLn1im9EOMnkypp7MZOwQhGzqp2Weu5eQJbpPxWxixxlYRKWPOmJjsk6qYfYH9kq43yc2w==
 
-"@next/bundle-analyzer@^11.1.0":
-  version "11.1.3"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-11.1.3.tgz#627a5e7ce1ca8e7c2d4e8c2a6d8fdd3be5f89bc0"
-  integrity sha512-oNBM19JqJ6MtKAx8wNJRdJW2prj6feyalzAujMgvQ5/yxDpnk0IR6j91fYE+jnmNe031W8N5LUERU3vQBB4Pdg==
+"@next/bundle-analyzer@^12.0.7":
+  version "12.0.7"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-12.0.7.tgz#2822e2c530ca7d7b83948154a69221e309eaa073"
+  integrity sha512-u3er2QTSPrcouO8CqfNraHrj9e/A+sBMQWe4w4yy2kSmK4L7PXkWDb8OFWB25eaDD24LrnMPTuuEq2pNCnbujA==
   dependencies:
     webpack-bundle-analyzer "4.3.0"
 

@@ -17,6 +17,7 @@ import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
+import { Contract } from 'ethers';
 
 dayjs.extend(relativeTime);
 
@@ -56,9 +57,7 @@ export default function WithdrawStake() {
         throw new Error(`Maximum Withdraw: ${formattedXFOLDStaked} XFOLD`);
       }
 
-      // await XFOLD.burn('', amount)
-      await DOMO_DAO.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
-      await DOMO_DAO.burn('0xd084944d3c05cd115c09d072b9f44ba3e0e45921', amount);
+      await DOMO_DAO.burn(account, amount);
 
       // const transaction = await XFOLD.burn(
       //   // @ts-ignore
