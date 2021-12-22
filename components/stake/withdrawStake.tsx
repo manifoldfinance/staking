@@ -57,7 +57,9 @@ export default function WithdrawStake() {
         throw new Error(`Maximum Withdraw: ${formattedXFOLDStaked} XFOLD`);
       }
 
-      await DOMO_DAO.burn(account, amount);
+      withdrawInput.clear();
+
+      const transaction = await DOMO_DAO.burn(account, amount);
 
       // const transaction = await XFOLD.burn(
       //   // @ts-ignore
@@ -66,30 +68,28 @@ export default function WithdrawStake() {
       //   shares,
       // );
 
-      // withdrawInput.clear();
+      toast.loading(
+        <TransactionToast
+          hash={transaction.hash}
+          chainId={chainId}
+          message={`Withdrawing ${withdrawAmount} FOLD`}
+        />,
+        { id: _id },
+      );
 
-      // toast.loading(
-      //   <TransactionToast
-      //     hash={transaction.hash}
-      //     chainId={chainId}
-      //     message={`Withdraw ${withdrawAmount} FOLD`}
-      //   />,
-      //   { id: _id },
-      // );
+      await transaction.wait();
 
-      // await transaction.wait();
+      toast.success(
+        <TransactionToast
+          hash={transaction.hash}
+          chainId={chainId}
+          message={`Withdrew ${withdrawAmount} FOLD`}
+        />,
+        { id: _id },
+      );
 
-      // toast.success(
-      //   <TransactionToast
-      //     hash={transaction.hash}
-      //     chainId={chainId}
-      //     message={`Withdraw ${withdrawAmount} FOLD`}
-      //   />,
-      //   { id: _id },
-      // );
-
-      // xfoldStakedMutate();
-      // xfoldBalanceMutate();
+      xfoldStakedMutate();
+      xfoldBalanceMutate();
     } catch (error) {
       handleError(error, _id);
     }

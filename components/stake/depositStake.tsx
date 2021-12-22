@@ -72,6 +72,8 @@ export default function DepositStake() {
       }
 
       // await foldContract.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
+      depositInput.clear()
+      
       let transaction = await DOMO_DAO.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount)
       toast.loading(
           <TransactionToast
@@ -83,6 +85,15 @@ export default function DepositStake() {
         );
 
       await transaction.wait();
+
+      toast.success(
+        <TransactionToast
+          hash={transaction.hash}
+          chainId={chainId}
+          message={`Approved ${depositAmount} xFOLD`}
+        />,
+        { id: _id },
+      );  
 
       transaction = await DOMO_DAO.mint(amount, '0xA0766B65A4f7B1da79a1AF79aC695456eFa28644')
 
