@@ -3,7 +3,7 @@
 node_modules
 /.pnp
 .pnp.js
-
+tsconfig.tsbuildinfo
 # testing
 /coverage
 
