@@ -6,22 +6,6 @@ on:
       - "**/**"
       - "!**/*.md/**"
 
-# ensure multiple CI processes are not running analysis on contracts
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
-  cancel-in-progress: true
-
-
-env:
-  CI: ''
-  COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
-  PULL_NUMBER: ${{ github.event.pull_request.number }}
-  RUN_ID: ${{ github.run_id }}
-  FORCE_COLOR: 2
-  NEXT_TELEMETRY_DISABLED: 1
-  NODE_ENV: production
-
-
 jobs:
   pipeline:
     name: Node ${{ matrix.node }} on ${{ matrix.os }}

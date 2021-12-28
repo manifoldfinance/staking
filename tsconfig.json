@@ -14,6 +14,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "strictNullChecks": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -31,6 +32,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+   "./contracts/types/DictatorDAOFactory.ts"
   ]
 }
