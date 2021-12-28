@@ -1,10 +1,9 @@
 import { useFoldToken, useDictatorDAO } from '@/hooks/useContract';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import useContinuousTokenAllocation from '@/hooks/view/useContinuousTokenAllocation';
 import useHasVotedInEpoch from '@/hooks/view/useHasVotedInEpoch';
-import useIsOperatorInitialized from '@/hooks/view/useIsOperatorInitialized';
+//import useIsOperatorInitialized from '@/hooks/view/useIsOperatorInitialized';
 import useMaxDelta from '@/hooks/view/useMaxDelta';
-import useXFOLDStaked from '@/hooks/view/usexFOLDStaked';
+import { useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 import useTokenAllocation from '@/hooks/view/useTokenAllocation';
 import handleError from '@/utils/handleError';
 import { parseUnits } from '@ethersproject/units';
