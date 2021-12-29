@@ -1,0 +1,12 @@
+# -*- mode: gitignore; -*-
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+.git
+.github
+*.log
+docs/
+test/
+tests/
+docker-compose.yml
