@@ -30,7 +30,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "jest.config.js"  ],
   "exclude": [
     "node_modules",
    "./contracts/types/DictatorDAOFactory.ts"
