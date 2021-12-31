@@ -39,6 +39,7 @@
     "eth-rpc-errors": "^4.0.3",
     "ethers": "5.4.6",
     "fathom-client": "^3.1.0",
+    "ganache-cli": "^6.12.2",
     "ismobilejs": "^1.1.1",
     "jazzicon-ts": "^1.0.0",
     "kbar": "^0.1.0-beta.24",
@@ -51,6 +52,7 @@
     "react-hot-toast": "^2.1.1",
     "react-use": "^17.3.1",
     "swr": "^1.0.0",
+    "web3": "^1.6.1",
     "zustand": "^3.6.4"
   },
   "devDependencies": {
