@@ -13,7 +13,7 @@ import ERC20_ABI from '@/contracts/ERC20.json';
 import FOLD_ABI from '@/contracts/FOLD.json';
 import STAKING_ABI from '@/contracts/Staking.json';
 import { useMemo } from 'react';
-import { AddressZero } from '@ethersproject/constants'
+import { AddressZero } from '@ethersproject/constants';
 
 const chainIdSelector = (state: State) => state.chainId;
 const accountSelector = (state: State) => state.account;
@@ -27,10 +27,7 @@ export default function useContract<T extends Contract = Contract>(
   const library = useWeb3Store(librarySelector);
 
   return useMemo(() => {
-      if (!address || address === AddressZero || !ABI || !library)
-      return null;
-    }
-
+    if (!address || address === AddressZero || !ABI || !library) return null;
     try {
       return new Contract(address, ABI, library.getSigner(account));
     } catch (error) {
