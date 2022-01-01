@@ -12,7 +12,11 @@ import dayjs from 'dayjs';
 import handleError from '@/utils/handleError';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import toast from 'react-hot-toast';
-import { useDictatorDAO, useOperatorAddress, useFoldToken } from '@/hooks/useContract';
+import {
+  useDictatorDAO,
+  useOperatorAddress,
+  useFoldToken,
+} from '@/hooks/useContract';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
