@@ -39,7 +39,7 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.10.6",
     "eth-rpc-errors": "^4.0.3",
-    "ethers": "5.4.6",
+    "ethers": "5.5.2",
     "fathom-client": "^3.1.0",
     "ganache-cli": "^6.12.2",
     "ismobilejs": "^1.1.1",
