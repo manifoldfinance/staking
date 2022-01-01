@@ -1,3 +1,7 @@
+/**
+ * @constant State
+ * @since 0.7.0
+ */
 import type MetaMaskConnector from '@/lib/connectors/metamask';
 import type WalletConnectConnector from '@/lib/connectors/walletconnect';
 import type { Web3Provider } from '@ethersproject/providers';
@@ -26,3 +30,4 @@ const useWeb3Store = create<State>((set, get) => ({
 }));
 
 export default useWeb3Store;
+/** @export useWeb3Store  */

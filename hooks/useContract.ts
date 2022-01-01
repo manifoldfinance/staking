@@ -13,6 +13,7 @@ import ERC20_ABI from '@/contracts/ERC20.json';
 import FOLD_ABI from '@/contracts/FOLD.json';
 import STAKING_ABI from '@/contracts/Staking.json';
 import { useMemo } from 'react';
+import { AddressZero } from '@ethersproject/constants';
 
 const chainIdSelector = (state: State) => state.chainId;
 const accountSelector = (state: State) => state.account;
@@ -26,10 +27,7 @@ export default function useContract<T extends Contract = Contract>(
   const library = useWeb3Store(librarySelector);
 
   return useMemo(() => {
-    if (!address || !ABI || !library) {
-      return null;
-    }
-
+    if (!address || address === AddressZero || !ABI || !library) return null;
     try {
       return new Contract(address, ABI, library.getSigner(account));
     } catch (error) {
@@ -39,6 +37,37 @@ export default function useContract<T extends Contract = Contract>(
     }
   }, [address, ABI, library, account]) as T;
 }
+/**
+
+export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
+  const { library, account } = useActiveWeb3React()
+
+  return useMemo(() => {
+    if (!address || !ABI || !library) return null
+    if (!address || address === AddressZero || !ABI || !library) return null
+    try {
+      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+    } catch (error) {
+      console.error('Failed to get contract', error)
+      return null
+    }
+  }, [address, ABI, library, withSignerIfPossible, account])
+}
+
+
+  return useMemo(() => {
+    if (!address || !ABI || !library) return null
+    if (!address || address === AddressZero || !ABI || !library) return null
+    try {
+      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+    } catch (error) {
+      console.error('Failed to get contract', error)
+      return null
+    }
+  }, [address, ABI, library, withSignerIfPossible, account])
+}
+
+*/
 
 export function useTokenContract(tokenAddress?: string) {
   return useContract<ERC20>(tokenAddress, ERC20_ABI);
