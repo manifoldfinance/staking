@@ -16,7 +16,8 @@
   "dependencies": {
     "@ethersproject/abstract-provider": "5.4.0",
     "@ethersproject/address": "5.4.0",
-    "@ethersproject/contracts": "5.4.0",
+    "@ethersproject/constants": "^5.5.0",
+    "@ethersproject/contracts": "^5.5.0",
     "@ethersproject/properties": "5.4.0",
     "@ethersproject/providers": "5.4.0",
     "@ethersproject/transactions": "5.4.0",
@@ -30,6 +31,7 @@
     "@sushiswap/core-sdk": "^1.0.0-canary.29",
     "@sushiswap/sdk": "^5.0.0-canary.116",
     "@walletconnect/ethereum-provider": "^1.6.5",
+    "@web3-react/core": "^6.1.9",
     "@web3-react/store": "^8.0.13-alpha.0",
     "@web3-react/types": "^6.0.7",
     "@wwwr/injectedprovider": "^1.0.0",

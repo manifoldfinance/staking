@@ -72,17 +72,20 @@ export default function DepositStake() {
       }
 
       // await foldContract.approve('0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb', amount)
-      depositInput.clear()
-      
-      let transaction = await DOMO_DAO.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount)
+      depositInput.clear();
+
+      let transaction = await DOMO_DAO.approve(
+        '0xd084944d3c05CD115C09d072B9F44bA3E0E45921',
+        amount,
+      );
       toast.loading(
-          <TransactionToast
-            hash={transaction.hash}
-            chainId={chainId}
-            message={`Approve ${depositAmount} FOLD`}
-          />,
-          { id: _id },
-        );
+        <TransactionToast
+          hash={transaction.hash}
+          chainId={chainId}
+          message={`Approve ${depositAmount} FOLD`}
+        />,
+        { id: _id },
+      );
 
       await transaction.wait();
 
@@ -93,9 +96,12 @@ export default function DepositStake() {
           message={`Approved ${depositAmount} xFOLD`}
         />,
         { id: _id },
-      );  
+      );
 
-      transaction = await DOMO_DAO.mint(amount, '0xA0766B65A4f7B1da79a1AF79aC695456eFa28644')
+      transaction = await DOMO_DAO.mint(
+        amount,
+        '0xA0766B65A4f7B1da79a1AF79aC695456eFa28644',
+      );
 
       toast.loading(
         <TransactionToast
@@ -104,7 +110,7 @@ export default function DepositStake() {
           message={`Minting ${depositAmount} xFOLD in progress`}
         />,
         { id: _id },
-      ); 
+      );
 
       await transaction.wait();
 
@@ -115,7 +121,7 @@ export default function DepositStake() {
           message={`Mint ${depositAmount} xFOLD`}
         />,
         { id: _id },
-      );      
+      );
 
       // // const transaction = await STAKING_CONTRACT.deposit('0xA0766B65A4f7B1da79a1AF79aC695456eFa28644', amount);
       // const transaction = await FOLD_ERC20.approve('0xd084944d3c05CD115C09d072B9F44bA3E0E45921', amount);
@@ -144,7 +150,6 @@ export default function DepositStake() {
       xfoldStakedMutate();
 
       xfoldBalanceMutate();
-
     } catch (error) {
       handleError(error, _id);
     }

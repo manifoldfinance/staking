@@ -1,4 +1,3 @@
-
 import useWeb3Store from '@/hooks/useWeb3Store';
 import normalizeChainId from '@/utils/normalizeChainId';
 import detectEthereumProvider from '@metamask/detect-provider';
@@ -9,7 +8,7 @@ import type {
   ProviderRpcError,
 } from 'eip1193-provider';
 
-const __DEV__ = true
+const __DEV__ = true;
 export class NoEthereumProviderError extends Error {
   public constructor() {
     super();

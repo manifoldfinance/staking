@@ -10,13 +10,15 @@ export default function ConnectAccount() {
         <div className="p-4 rounded-xl ring-1 ring-inset ring-white ring-opacity-10 bg-primary-400">
           <div className="space-y-4">
             <h1 className="text-lg font-semibold leading-none text-center">
-              Manifold Finance 
+              Manifold Finance
             </h1>
 
             <div className="space-y-2 text-gray-300">
               <br />
               <br />
-              <h3  className="text-lg font-semibold leading-none text-center">Use your FOLD to mint xFOLD and get staking rewards</h3>
+              <h3 className="text-lg font-semibold leading-none text-center">
+                Use your FOLD to mint xFOLD and get staking rewards
+              </h3>
               <br />
               <br />
               <p>release v.0.6.0</p>

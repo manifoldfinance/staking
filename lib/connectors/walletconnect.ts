@@ -5,7 +5,7 @@ import normalizeChainId from '@/utils/normalizeChainId';
 import type WalletConnectProvider from '@walletconnect/ethereum-provider';
 import { UnsupportedChainIdError } from './metamask';
 
-const __DEV__ = true
+const __DEV__ = true;
 export default class WalletConnectConnector {
   public wc?: WalletConnectProvider;
 
