@@ -41,8 +41,6 @@
     "@web3-react/store": "^8.0.13-alpha.0",
     "@web3-react/types": "^6.0.7",
     "@wwwr/injectedprovider": "^1.0.0",
-    "babel-plugin-macros": "^3.1.0",
-    "babel-plugin-styled-components": "^2.0.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.6",
     "eth-rpc-errors": "^4.0.3",
@@ -59,7 +57,6 @@
     "react-feather": "^2.0.9",
     "react-hot-toast": "^2.1.1",
     "react-use": "^17.3.1",
-    "styled-components": "^5.3.3",
     "swr": "^1.0.0",
     "zustand": "^3.6.8"
   },
