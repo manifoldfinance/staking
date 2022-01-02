@@ -1,4 +1,4 @@
-import { SUSHI_SWAP_LINKS } from '@/constants/tokens';
+// import { SUSHI_SWAP_LINKS } from '@/constants/tokens';
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import Link from 'next/link';
@@ -28,7 +28,7 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <a
-              href={SUSHI_SWAP_LINKS.FOLD}
+              href={"https://app.sushi.com/swap?outputCurrency=0xd084944d3c05CD115C09d072B9F44bA3E0E45921"}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
@@ -40,7 +40,7 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <a
-              href={SUSHI_SWAP_LINKS.XFOLD}
+              href={"ttps://app.sushi.com/swap?outputCurrency=0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb"}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}

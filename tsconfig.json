@@ -17,7 +17,7 @@
     "strictNullChecks": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -29,7 +29,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "jest.config.js", "__tests__/depositStake.js"
+    "**/*.tsx",
+    "jest.config.js",
+    "__tests__/depositStake.js"
   ],
   "exclude": [
     "node_modules",
