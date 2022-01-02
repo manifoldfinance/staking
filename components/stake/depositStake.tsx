@@ -17,7 +17,7 @@ import { useMemo } from 'react';
 import useTokenAllowance from '@/hooks/view/useTokenAllowance';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { getXFOLDStaked } from '@/hooks/view/useXFOLDStaked';
+import { useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 export default function DepositStake() {
   const account = useWeb3Store((state) => state.account);
@@ -30,8 +30,7 @@ export default function DepositStake() {
     TOKEN_ADDRESSES.FOLD[chainId],
   );
 
-  
-  const { mutate: xfoldStakedMutate } =  getXFOLDStaked(contract: DictatorDAO)
+  const { mutate: xfoldStakedMutate } = useXFOLDStaked();
 
   const formattedFOLDBalance = useFormattedBigNumber(xfoldBalance);
 

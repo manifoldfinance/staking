@@ -64,7 +64,7 @@ export default function WithdrawStake() {
       withdrawInput.clear();
 
       const transaction = await DOMO_DAO.burn(account, amount);
-
+      console.log('XFOLD - Burning and unstaking in progress ');
       // const transaction = await XFOLD.burn(
       //   // @ts-ignore
       //   to,

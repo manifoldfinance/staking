@@ -16,7 +16,7 @@
     "moduleResolution": "node",
     "strictNullChecks": false,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
@@ -29,12 +29,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "jest.config.js",
-    "__tests__/depositStake.js"
+    "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "./contracts/types/DictatorDAOFactory.ts"
+    "node_modules"
   ]
 }

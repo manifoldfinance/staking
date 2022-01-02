@@ -3,7 +3,7 @@ import { useDictatorDAO } from '@/hooks/useContract';
 import useSWR from 'swr';
 import useWeb3Store from '../useWeb3Store';
 import useKeepSWRDataLiveAsBlocksArrive from './useKeepSWRDataLiveAsBlocksArrive';
-import { TOKEN_ADDRESSES } from '@/constants/tokens';
+// import { TOKEN_ADDRESSES } from '@/constants/tokens';
 
 export function getXFOLDStaked(contract: DictatorDAO) {
   return async (_: string, user: string) => {

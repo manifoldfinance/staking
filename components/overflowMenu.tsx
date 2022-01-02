@@ -28,7 +28,9 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <a
-              href={"https://app.sushi.com/swap?outputCurrency=0xd084944d3c05CD115C09d072B9F44bA3E0E45921"}
+              href={
+                'https://app.sushi.com/swap?outputCurrency=0xd084944d3c05CD115C09d072B9F44bA3E0E45921'
+              }
               target="_blank"
               rel="noopener noreferrer"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
@@ -40,7 +42,9 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <a
-              href={"ttps://app.sushi.com/swap?outputCurrency=0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb"}
+              href={
+                'ttps://app.sushi.com/swap?outputCurrency=0x454BD9E2B29EB5963048cC1A8BD6fD44e89899Cb'
+              }
               target="_blank"
               rel="noopener noreferrer"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}

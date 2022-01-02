@@ -15,7 +15,7 @@ import { useDictatorDAO } from '@/hooks/useContract';
 import useInput from '@/hooks/useInput';
 import useUserLockedUntil from '@/hooks/view/useUserLockedUntil';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
+import { useXFOLDStaked } from '@/hooks/view/useXFOLDStaked';
 
 export default function LockStake() {
   const chainId = useWeb3Store((state) => state.chainId);
@@ -108,12 +108,12 @@ export default function LockStake() {
 
         <div className="space-y-2">
           <div>
-            <div className="flex space-x-2 mb-2">
+            <div className="flex mb-2 space-x-2">
               <div className="flex flex-1 divide-x">
                 <button
                   onClick={() => lockupPeriod.setValue('180')}
                   type="button"
-                  className="flex-1 py-2 px-3 border-primary-300 rounded-l-md whitespace-nowrap bg-primary block text-center focus:outline-none focus:ring-4"
+                  className="block flex-1 px-3 py-2 text-center whitespace-nowrap rounded-l-md border-primary-300 bg-primary focus:outline-none focus:ring-4"
                 >
                   180 Days
                 </button>
@@ -121,7 +121,7 @@ export default function LockStake() {
                 <button
                   onClick={() => lockupPeriod.setValue('365')}
                   type="button"
-                  className="flex-1 py-2 px-3 border-primary-300 whitespace-nowrap bg-primary block text-center focus:outline-none focus:ring-4"
+                  className="block flex-1 px-3 py-2 text-center whitespace-nowrap border-primary-300 bg-primary focus:outline-none focus:ring-4"
                 >
                   365 Days
                 </button>
@@ -129,17 +129,17 @@ export default function LockStake() {
                 <button
                   onClick={() => lockupPeriod.setValue('730')}
                   type="button"
-                  className="flex-1 py-2 px-3 border-primary-300 rounded-r-md whitespace-nowrap bg-primary block text-center focus:outline-none focus:ring-4"
+                  className="block flex-1 px-3 py-2 text-center whitespace-nowrap rounded-r-md border-primary-300 bg-primary focus:outline-none focus:ring-4"
                 >
                   730 Days
                 </button>
               </div>
 
-              <div className="py-2 pr-4 pl-3 rounded-md whitespace-nowrap bg-primary block text-center focus-within:ring-4">
+              <div className="block py-2 pr-4 pl-3 text-center whitespace-nowrap rounded-md bg-primary focus-within:ring-4">
                 <input
                   autoComplete="off"
                   autoCorrect="off"
-                  className="hide-number-input-arrows text-right appearance-none bg-transparent flex-1 focus:outline-none mr-1 text-white"
+                  className="flex-1 mr-1 text-right text-white bg-transparent appearance-none hide-number-input-arrows focus:outline-none"
                   id="lockupPeriod"
                   max={365 * 2}
                   min={1}
@@ -162,7 +162,7 @@ export default function LockStake() {
 
             <Slider.Root
               name="lockupPeriod-range"
-              className="relative flex items-center select-none w-full h-5 touch-action-none"
+              className="flex relative items-center w-full h-5 select-none touch-action-none"
               max={365 * 2}
               min={1}
               step={1}
@@ -172,7 +172,7 @@ export default function LockStake() {
               }
             >
               <Slider.Track className="bg-primary-300 relative flex-grow rounded-full h-[3px]">
-                <Slider.Range className="absolute bg-white rounded-full h-full" />
+                <Slider.Range className="absolute h-full bg-white rounded-full" />
               </Slider.Track>
               <Slider.Thumb className="block w-4 h-4 bg-white rounded-full focus:outline-none focus:ring-4" />
             </Slider.Root>
@@ -183,13 +183,13 @@ export default function LockStake() {
           <div className="flex justify-between items-end">
             <p className="leading-none">Rewards Multiplier</p>
 
-            <p className="text-2xl leading-none font-semibold">{`${lockupPeriodMultiplier}x`}</p>
+            <p className="text-2xl font-semibold leading-none">{`${lockupPeriodMultiplier}x`}</p>
           </div>
         </div>
 
         {userLockedUntil && userLockedUntil.isLocked && (
           <>
-            <div className="h-px w-full bg-primary-300" />
+            <div className="w-full h-px bg-primary-300" />
 
             <div className="flex justify-between">
               <p className="leading-none">Currently Locked Until</p>
