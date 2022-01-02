@@ -15,7 +15,7 @@ export function getXFOLDStaked(contract: DictatorDAO) {
 
 // TODO
 // TEST: state mgmt vs parse account
-export function useXFOLDStaked(
+export function usexFOLDStaked(
   //  address: string,
   tokenAddress = 0x454bd9e2b29eb5963048cc1a8bd6fd44e89899cb,
   suspense = false,

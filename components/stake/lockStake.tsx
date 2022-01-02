@@ -15,7 +15,7 @@ import { useDictatorDAO } from '@/hooks/useContract';
 import useInput from '@/hooks/useInput';
 import useUserLockedUntil from '@/hooks/view/useUserLockedUntil';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { useXFOLDStaked } from '@/hooks/view/useXFOLDStaked';
+import { usexFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 export default function LockStake() {
   const chainId = useWeb3Store((state) => state.chainId);
@@ -27,7 +27,7 @@ export default function LockStake() {
   const { data: userLockedUntil, mutate: userLockedUntilMutate } =
     useUserLockedUntil();
 
-  const { data: xfoldStaked } = useXFOLDStaked();
+  const { data: xfoldStaked } = usexFOLDStaked();
 
   const isLockupPeriodAfterCurrentLockedTimestamp = useMemo(() => {
     if (typeof userLockedUntil === 'undefined') {

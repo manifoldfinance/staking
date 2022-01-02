@@ -21,7 +21,7 @@ import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
 import { Contract } from 'ethers';
-import { useXFOLDStaked } from '@/hooks/view/useXFOLDStaked';
+import { usexFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 dayjs.extend(relativeTime);
 
@@ -34,7 +34,7 @@ export default function WithdrawStake() {
     TOKEN_ADDRESSES.XFOLD[chainId],
   );
 
-  const { data: xfoldStaked, mutate: xfoldStakedMutate } = useXFOLDStaked();
+  const { data: xfoldStaked, mutate: xfoldStakedMutate } = usexFOLDStaked();
 
   const DOMO_DAO = useDictatorDAO();
   const FOLD_ERC20 = useFoldToken();

@@ -11,10 +11,10 @@ function getXFOLDStaked(contract: Staking) {
   };
 }
 
-export default function useXFOLDStaked() {
+export default function usexFOLDStaked() {
   const account = useWeb3Store((state) => state.account);
 
-  const contract = useXFOLDStaked();
+  const contract = usexFOLDStaked();
 
   const shouldFetch = !!contract && typeof account === 'string';
 
