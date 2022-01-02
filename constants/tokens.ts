@@ -40,7 +40,7 @@ export const TOKEN_CATEGORY_BY_SYMBOL: TokenCategories = {
   [TokenNames.USDC]: 'CURRENCY',
   [TokenNames.SLP]: 'CRYPTO',
   [TokenNames.ETH]: 'COMMODITY',
-  [TokenNames.XFOLD]: 'COMMODITY'
+  [TokenNames.XFOLD]: 'COMMODITY',
 };
 
 export const TOKEN_COLORS = [

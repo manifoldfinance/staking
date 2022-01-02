@@ -14,13 +14,12 @@ export default function useAddTokenToMetaMask(): {
   const addToken = useCallback(async () => {
     try {
       if (library && library.provider.isMetaMask && library.provider.request) {
-        
         const XFOLD = TOKEN_ASSETS.XFOLD[chainId];
 
         const FOLD = TOKEN_ASSETS.FOLD[chainId];
-       await library.provider.request({
-       // await library.provider.request({
-         
+        await library.provider.request({
+          // await library.provider.request({
+
           method: 'wallet_watchAsset',
           params: {
             // @ts-ignore

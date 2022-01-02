@@ -16,21 +16,18 @@ function StakeView() {
       <div className="px-5 mx-auto max-w-lg">
         <Tab.Group>
           <Tab.List as={Panel} className="flex space-x-1" padding="p-1">
-
             <Tab key={TAB_KEYS.WITHDRAW} className={tabClassNames}>
               {TAB_KEYS.WITHDRAW}
             </Tab>
-
           </Tab.List>
 
-            <Tab.Panel
-              as={Panel}
-              key={TAB_KEYS.WITHDRAW}
-              className={tabPanelClassNames}
-            >
-              <WithdrawStake />
-            </Tab.Panel>
-
+          <Tab.Panel
+            as={Panel}
+            key={TAB_KEYS.WITHDRAW}
+            className={tabPanelClassNames}
+          >
+            <WithdrawStake />
+          </Tab.Panel>
         </Tab.Group>
       </div>
     </section>
