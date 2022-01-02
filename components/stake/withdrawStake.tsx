@@ -31,7 +31,7 @@ export default function WithdrawStake() {
 
   const { mutate: xfoldBalanceMutate } = useTokenBalance(
     account,
-    TOKEN_ADDRESSES.xFOLD[chainId],
+    TOKEN_ADDRESSES.XFOLD[chainId],
   );
 
   const { data: xfoldStaked, mutate: xfoldStakedMutate } = useXFOLDStaked();
