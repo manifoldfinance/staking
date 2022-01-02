@@ -14,6 +14,7 @@ import FOLD_ABI from '@/contracts/FOLD.json';
 import STAKING_ABI from '@/contracts/Staking.json';
 import { useMemo } from 'react';
 import { AddressZero } from '@ethersproject/constants';
+import { Staking } from '@/contracts/types/Staking';
 
 const chainIdSelector = (state: State) => state.chainId;
 const accountSelector = (state: State) => state.account;
@@ -37,37 +38,6 @@ export default function useContract<T extends Contract = Contract>(
     }
   }, [address, ABI, library, account]) as T;
 }
-/**
-
-export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
-  const { library, account } = useActiveWeb3React()
-
-  return useMemo(() => {
-    if (!address || !ABI || !library) return null
-    if (!address || address === AddressZero || !ABI || !library) return null
-    try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
-    } catch (error) {
-      console.error('Failed to get contract', error)
-      return null
-    }
-  }, [address, ABI, library, withSignerIfPossible, account])
-}
-
-
-  return useMemo(() => {
-    if (!address || !ABI || !library) return null
-    if (!address || address === AddressZero || !ABI || !library) return null
-    try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
-    } catch (error) {
-      console.error('Failed to get contract', error)
-      return null
-    }
-  }, [address, ABI, library, withSignerIfPossible, account])
-}
-
-*/
 
 export function useTokenContract(tokenAddress?: string) {
   return useContract<ERC20>(tokenAddress, ERC20_ABI);
@@ -108,11 +78,11 @@ export function useFOLDUSDCRewards() {
 export function useStaking() {
   const chainId = useWeb3Store(chainIdSelector);
 
-  return useContract<FOLD>(CONTRACT_ADDRESSES.FOLD[chainId], FOLD_ABI);
+  return useContract<Staking>(CONTRACT_ADDRESSES.XFOLD[chainId], STAKING_ABI);
 }
 
 export function useStakingContract() {
   const chainId = useWeb3Store(chainIdSelector);
 
-  return useContract<FOLD>(CONTRACT_ADDRESSES.Staking[chainId], STAKING_ABI);
+  return useContract<Staking>(CONTRACT_ADDRESSES.XFOLD[chainId], STAKING_ABI);
 }

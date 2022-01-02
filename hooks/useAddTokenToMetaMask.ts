@@ -1,4 +1,4 @@
-import { TOKEN_ASSETS } from '@/constants/tokens';
+import { TOKEN_ASSETS, TOKEN_ADDRESSES } from '@/constants/tokens';
 import { useCallback, useState } from 'react';
 import useWeb3Store from './useWeb3Store';
 
@@ -14,17 +14,18 @@ export default function useAddTokenToMetaMask(): {
   const addToken = useCallback(async () => {
     try {
       if (library && library.provider.isMetaMask && library.provider.request) {
-        const XFOLD = TOKEN_ASSETS.xFOLD[chainId];
+        const XFOLD = TOKEN_ASSETS.XFOLD[chainId];
 
         const FOLD = TOKEN_ASSETS.FOLD[chainId];
-
         await library.provider.request({
+          // await library.provider.request({
+
           method: 'wallet_watchAsset',
           params: {
-            //@ts-ignore
+            // @ts-ignore
             type: 'ERC20',
             options: {
-              address: XFOLD.address,
+              address: TOKEN_ADDRESSES.XFOLD,
               symbol: XFOLD.symbol,
               decimals: XFOLD.decimals,
             },
@@ -37,7 +38,7 @@ export default function useAddTokenToMetaMask(): {
             //@ts-ignore
             type: 'ERC20',
             options: {
-              address: FOLD.address,
+              address: TOKEN_ADDRESSES.FOLD,
               symbol: FOLD.symbol,
               decimals: FOLD.decimals,
             },
@@ -60,3 +61,5 @@ export default function useAddTokenToMetaMask(): {
     success,
   };
 }
+
+// window.addEventListener('DOMContentLoaded', initialize);

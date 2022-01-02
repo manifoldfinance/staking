@@ -2,8 +2,10 @@ import type { DOMODAO as DictatorDAO } from '@/contracts/types';
 import { useDictatorDAO } from '@/hooks/useContract';
 import useSWR from 'swr';
 import useWeb3Store from '../useWeb3Store';
+import useKeepSWRDataLiveAsBlocksArrive from './useKeepSWRDataLiveAsBlocksArrive';
+// import { TOKEN_ADDRESSES } from '@/constants/tokens';
 
-export function getxFOLDStaked(contract: DictatorDAO) {
+export function getXFOLDStaked(contract: DictatorDAO) {
   return async (_: string, user: string) => {
     const value = await contract.balanceOf(user);
 
@@ -11,15 +13,31 @@ export function getxFOLDStaked(contract: DictatorDAO) {
   };
 }
 
-export function useXFOLDStaked() {
-  const account = useWeb3Store((state) => state.account);
+// TODO
+// TEST: state mgmt vs parse account
+export function usexFOLDStaked(
+  //  address: string,
+  tokenAddress = 0x454bd9e2b29eb5963048cc1a8bd6fd44e89899cb,
+  suspense = false,
+) {
+  const address = useWeb3Store((state) => state.account);
 
   const contract = useDictatorDAO();
 
-  const shouldFetch = !!contract && typeof account === 'string';
+  const shouldFetch =
+    typeof address === 'string' &&
+    typeof tokenAddress === 'string' &&
+    !!contract;
 
-  return useSWR(
-    shouldFetch ? ['balanceOf', account] : null,
-    getxFOLDStaked(contract),
+  const result = useSWR(
+    shouldFetch ? ['TokenBalance', address, tokenAddress] : null,
+    getXFOLDStaked(contract),
+    {
+      suspense,
+    },
   );
+
+  useKeepSWRDataLiveAsBlocksArrive(result.mutate);
+
+  return result;
 }
