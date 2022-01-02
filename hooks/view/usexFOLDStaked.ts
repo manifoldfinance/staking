@@ -3,6 +3,7 @@ import { useDictatorDAO } from '@/hooks/useContract';
 import useSWR from 'swr';
 import useWeb3Store from '../useWeb3Store';
 import useKeepSWRDataLiveAsBlocksArrive from './useKeepSWRDataLiveAsBlocksArrive';
+import { TOKEN_ADDRESSES } from '@/constants/tokens';
 
 export function getXFOLDStaked(contract: DictatorDAO) {
   return async (_: string, user: string) => {
@@ -14,9 +15,9 @@ export function getXFOLDStaked(contract: DictatorDAO) {
 
 // TODO
 // TEST: state mgmt vs parse account
-export default function useXFOLDStaked(
+export function useXFOLDStaked(
   //  address: string,
-  tokenAddress: string,
+  tokenAddress = 0x454bd9e2b29eb5963048cc1a8bd6fd44e89899cb,
   suspense = false,
 ) {
   const address = useWeb3Store((state) => state.account);

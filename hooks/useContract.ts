@@ -114,5 +114,5 @@ export function useStaking() {
 export function useStakingContract() {
   const chainId = useWeb3Store(chainIdSelector);
 
-  return useContract<FOLD>(CONTRACT_ADDRESSES.Staking[chainId], STAKING_ABI);
+  return useContract<FOLD>(CONTRACT_ADDRESSES.XFOLD[chainId], STAKING_ABI);
 }

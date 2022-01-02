@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2019",
     "lib": [
       "dom",
       "dom.iterable",
@@ -9,7 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -17,7 +17,7 @@
     "strictNullChecks": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -29,10 +29,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "jest.config.js", "__tests__/depositStake.js"  ],
+    "**/*.tsx", "jest.config.js", "__tests__/depositStake.js"
+  ],
   "exclude": [
     "node_modules",
-   "./contracts/types/DictatorDAOFactory.ts"
+    "./contracts/types/DictatorDAOFactory.ts"
   ]
 }

@@ -1,6 +1,5 @@
 import Button, { MaxButton } from '../button';
 import { formatUnits, parseUnits } from '@ethersproject/units';
-import { getxFOLDStaked, useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 import type { FormEvent } from 'react';
 import { MIN_INPUT_VALUE } from '@/constants/numbers';
@@ -22,6 +21,7 @@ import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
 import { Contract } from 'ethers';
+import { useXFOLDStaked } from '@/hooks/view/useXFOLDStaked';
 
 dayjs.extend(relativeTime);
 
@@ -113,7 +113,7 @@ export default function WithdrawStake() {
       </div>
 
       <div>
-        <div className="flex space-x-4 mb-2">
+        <div className="flex mb-2 space-x-4">
           <TokenSingle symbol="xFOLD" />
 
           <div className="flex-1">
@@ -130,7 +130,7 @@ export default function WithdrawStake() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 h-5">
+        <p className="h-5 text-sm text-gray-300">
           {xfoldStaked && formattedXFOLDStaked ? (
             <>
               <span>{`Available: ${formattedXFOLDStaked} xFOLD`}</span>{' '}
