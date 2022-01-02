@@ -3,22 +3,8 @@ module.exports = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
-  reactStrictMode: true,
   optimizeImages: true,
   optimizeCss: true,
-  experimental: { 
-    esmExternals: true,
-    outputFileTracing: true
-  },
-  images: {
-    domains: [
-      'raw.githubusercontent.com',
-      'assets.coingecko.com',
-      'logos.covalenthq.com',
-      'www.covalenthq.com',
-      's2.coinmarketcap.com',
-    ],
-  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
