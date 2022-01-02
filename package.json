@@ -1,17 +1,20 @@
 {
   "name": "@manifoldfinance/staking",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "inspect": "NODE_OPTIONS='--inspect' next dev",
+    "start": "NEXT_TELEMETRY_DISABLED=1 next start",
     "fmt": "npx prettier --config .prettierrc.json --write '**/*.ts'",
-    "start": "next start",
     "lint": "next lint",
     "test": "npx jest",
+    "prod": "NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
     "type-check": "npx tsc --pretty --noEmit",
     "format": "npx prettier --write \"**/*.tsx\" \"**/*.ts\"",
     "analyze": "ANALYZE=true next build",
+    "bench": "ANALYZE=true yarn build && serve .next -n",
     "compile-contract-types": "npx typechain --target ethers-v5 --out-dir './contracts/types' './contracts/*.json'"
   },
   "dependencies": {
@@ -92,7 +95,7 @@
     "ts-jest": "27.0.0",
     "ts-node": "^10.4.0",
     "typechain": "5.1.2",
-    "typescript": "^4",
+    "typescript": "^4.3.5",
     "web3": "^1.6.1"
   },
   "repository": {
