@@ -37,37 +37,6 @@ export default function useContract<T extends Contract = Contract>(
     }
   }, [address, ABI, library, account]) as T;
 }
-/**
-
-export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
-  const { library, account } = useActiveWeb3React()
-
-  return useMemo(() => {
-    if (!address || !ABI || !library) return null
-    if (!address || address === AddressZero || !ABI || !library) return null
-    try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
-    } catch (error) {
-      console.error('Failed to get contract', error)
-      return null
-    }
-  }, [address, ABI, library, withSignerIfPossible, account])
-}
-
-
-  return useMemo(() => {
-    if (!address || !ABI || !library) return null
-    if (!address || address === AddressZero || !ABI || !library) return null
-    try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
-    } catch (error) {
-      console.error('Failed to get contract', error)
-      return null
-    }
-  }, [address, ABI, library, withSignerIfPossible, account])
-}
-
-*/
 
 export function useTokenContract(tokenAddress?: string) {
   return useContract<ERC20>(tokenAddress, ERC20_ABI);

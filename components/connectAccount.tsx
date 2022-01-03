@@ -1,5 +1,6 @@
 import Button from './button';
 import useWalletModal from '@/hooks/useWalletModal';
+process.env.NEXT_PUBLIC_COMMIT;
 
 export default function ConnectAccount() {
   const openWalletModal = useWalletModal((state) => state.open);
@@ -21,7 +22,9 @@ export default function ConnectAccount() {
               </h3>
               <br />
               <br />
-              <p>release v.0.6.0</p>
+
+              <p>%NEXT_PUBLIC_COMMIT%</p>
+              <p></p>
             </div>
 
             <Button onClick={openWalletModal}>{`Connect Wallet`}</Button>

@@ -38,8 +38,6 @@ export default function MintDeposit() {
 
   const stakingRouter = useDictatorDAO();
 
-  const { mutate: bestBuyMutate } = useBestBuy();
-
   const { data: poolTokens } = useGetPoolTokens();
 
   const { mutate: foldBalanceMutate } = useTokenBalance(
@@ -149,7 +147,6 @@ export default function MintDeposit() {
       foldBalanceMutate();
       mintTokenBalanceMutate();
       totalSupplyMutate();
-      bestBuyMutate();
     } catch (error) {
       handleError(error, _id);
     }

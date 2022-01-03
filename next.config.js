@@ -3,13 +3,12 @@ module.exports = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
-  reactStrictMode: true,
   optimizeImages: true,
   optimizeCss: true,
-  experimental: { 
-    esmExternals: true,
-    outputFileTracing: true
-  },
+//  experimental: { 
+//    esmExternals: true,
+//    outputFileTracing: true
+//  },
   images: {
     domains: [
       'raw.githubusercontent.com',

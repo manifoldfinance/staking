@@ -36,13 +36,3 @@ export function getContract(
     getProviderOrSigner(library, account) as any,
   );
 }
-
-/**  
-export function getRouterAddress(chainId?: ChainId) {
-  if (!chainId) {
-    throw Error(`Undefined 'chainId' parameter '${chainId}'.`)
-  }
-  return ROUTER_ADDRESS[chainId]
-}
-
-*/

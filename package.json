@@ -1,10 +1,10 @@
 {
   "name": "@manifoldfinance/staking",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "export NEXT_PUBLIC_COMMIT=$(git rev-parse HEAD) && npx next build",
     "fmt": "npx prettier --config .prettierrc.json --write '**/*.ts'",
     "start": "next start",
     "lint": "next lint",
@@ -54,7 +54,7 @@
     "react-feather": "^2.0.9",
     "react-hot-toast": "^2.1.1",
     "react-use": "^17.3.1",
-    "swr": "^1.0.0",
+    "swr": "^1.1.2",
     "zustand": "^3.6.8"
   },
   "devDependencies": {
