@@ -29,8 +29,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "jest.config.js", "__tests__/depositStake.js"  ],
+    "**/*.tsx",
+    "./jest-setup.ts",
+ "jest.config.js", "__tests__/depositStake.ts"  ],
   "exclude": [
     "node_modules",
    "./contracts/types/DictatorDAOFactory.ts"
