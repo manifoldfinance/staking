@@ -11,7 +11,7 @@ export default function ConnectAccount() {
         <div className="p-4 rounded-xl ring-1 ring-inset ring-white ring-opacity-10 bg-primary-400">
           <div className="space-y-4">
             <h1 className="text-lg font-semibold leading-none text-center">
-              Manifold Finance
+              Manifold Finance v1
             </h1>
 
             <div className="space-y-2 text-gray-300">
@@ -23,7 +23,7 @@ export default function ConnectAccount() {
               <br />
               <br />
 
-              <p>%NEXT_PUBLIC_COMMIT%</p>
+              <p>🌀 💊 🔵 🍣</p>
               <p></p>
             </div>
 
