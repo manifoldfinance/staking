@@ -2309,10 +2309,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sushiswap/core-sdk@^1.0.0-canary.29":
-  version "1.0.0-canary.29"
-  resolved "https://registry.yarnpkg.com/@sushiswap/core-sdk/-/core-sdk-1.0.0-canary.29.tgz#87b7627022771cb6abf26688cf05dd11d3b7e4fb"
-  integrity sha512-H7kXwwc5eyRtyjtnJWaAbG66fBfz/8fY4X3bbnh4VDH7dfA+aMt4NfoPmTAxsvHNtBXhw+RRl2RXFKNFAhI/dw==
+"@sushiswap/core-sdk@^1.0.0-canary.34":
+  version "1.0.0-canary.34"
+  resolved "https://registry.yarnpkg.com/@sushiswap/core-sdk/-/core-sdk-1.0.0-canary.34.tgz#492dd13861c33c9ce1d076e9c6c5d24047474522"
+  integrity sha512-fQ8eGWVE0eT393mh4k/t95HDopMdJhmDXU2dOvo/3zZ7+R6qBOKVaw4e2CgtO3ZICN1B3KirzfrXBGK2JkquMw==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"
