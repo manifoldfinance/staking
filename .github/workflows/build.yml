@@ -1,10 +1,10 @@
 name: nodejs
 
-on: 
+on:
   push:
-     paths:
-      - "**/**"
-      - "!**/*.md/**"
+    paths:
+      - '**/**'
+      - '!**/*.md/**'
 env:
   CI: ''
   COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
