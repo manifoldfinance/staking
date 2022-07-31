@@ -121,5 +121,10 @@
       "last 1 edge version",
       "last 1 safari version"
     ]
+  },
+  "nextBundleAnalysis": {
+    "budget": 563200,
+    "budgetPercentIncreaseRed": 25,
+    "showDetails": true
   }
 }
