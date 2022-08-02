@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - main # change this if your default branch is named differently
+      - trunk
   workflow_dispatch:
 
 defaults:
@@ -14,17 +14,26 @@ defaults:
 
 jobs:
   analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    name: Analyze running on Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
-      - name: Set up node
-        uses: actions/setup-node@v1
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['16.x']
+        os: ['ubuntu-latest']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+            install-command: yarn --prefer-offline
 
       - name: Restore next build
         uses: actions/cache@v2
@@ -89,22 +98,23 @@ jobs:
           echo ::set-output name=body::$body
 
       - name: Find Comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         if: success() && github.event.number
         id: fc
         with:
           issue-number: ${{ github.event.number }}
+          comment-author: 'github-actions[bot]'
           body-includes: '<!-- __NEXTJS_BUNDLE -->'
 
       - name: Create Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
+        uses: peter-evans/create-or-update-comment@v2
         if: success() && github.event.number && steps.fc.outputs.comment-id == 0
         with:
           issue-number: ${{ github.event.number }}
           body: ${{ steps.get-comment-body.outputs.body }}
 
       - name: Update Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
+        uses: peter-evans/create-or-update-comment@v2
         if: success() && github.event.number && steps.fc.outputs.comment-id != 0
         with:
           issue-number: ${{ github.event.number }}
