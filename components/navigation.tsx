@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { Account } from './web3';
 import OverflowMenu from './overflowMenu';
 import MobileMenu from './mobileMenu';
+import useWalletModal from '@/hooks/useWalletModal';
 
 function NavigationItem({ text, href }: { text: string; href: string }) {
   const { asPath } = useRouter();
@@ -105,7 +106,7 @@ export default function Navigation() {
           </div>
         </li>
       </ul>
-
+{/* @ts-ignore */}
       <WalletModal />
     </nav>
   );

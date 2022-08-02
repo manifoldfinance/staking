@@ -5,8 +5,9 @@ import Head from 'next/head';
 import Navigation from '@/components/navigation';
 import { Toaster } from 'react-hot-toast';
 import { useEagerConnect } from '@/hooks/useEagerConnect';
+import React from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp( { Component, pageProps }: AppProps) {
   useEagerConnect();
 
   return (
