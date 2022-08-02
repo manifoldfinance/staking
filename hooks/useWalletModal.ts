@@ -1,17 +1,16 @@
 import create from 'zustand';
 
-const prefix: string = 'Invariant failed'
+const prefix: string = 'Invariant failed';
 
 export function invariant(condition: boolean, message?: string): void {
   if (condition) {
-    return
+    return;
   }
 
-  throw new Error(`${prefix}: ${message || ''}`)
+  throw new Error(`${prefix}: ${message || ''}`);
 }
 
 export type EmptyObject = Record<string, never>; // or {[k: string]: never}
-
 
 export type State = {
   EmptyObject: Record<string, never>;

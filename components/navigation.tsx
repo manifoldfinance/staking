@@ -106,7 +106,7 @@ export default function Navigation() {
           </div>
         </li>
       </ul>
-{/* @ts-ignore */}
+      {/* @ts-ignore */}
       <WalletModal />
     </nav>
   );
