@@ -91,6 +91,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "27.0.0",
     "lint-staged": "^11.1.2",
+    "node-fetch": "^2.6.7",
     "postcss": "^8.3.6",
     "prettier": "^2.7.1",
     "pretty-quick": "^3.1.1",
