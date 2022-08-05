@@ -8,7 +8,7 @@ async function getCommit() {
   if (!commit) return `No COMMIT_SHA environment variable set.`;
   try {
     const res = await fetch(
-      `https://api.github.com/repos/manifoldfinance/sushiswap-interface/commits/${commit}`,
+      `https://api.github.com/repos/manifoldfinance/staking/commits/${commit}`,
     );
     const data = await res.json();
     return {
@@ -31,9 +31,10 @@ async function go() {
   };
 
   // @note this is different for nextjs, should be in dir: `.next/~`
-  fs.writeFileSync(
-    path.join(__dirname, '.next/server/pages/artifact.json'),
-    JSON.stringify(buildInfo, null, 2),
+  fs.writeFileSync('artifact.json', 
+//    path.join(__dirname, '.next/server/pages/artifact.json'),
+//    path.join(__dirname, 'public/artifact.json'),  
+  JSON.stringify(buildInfo, null, 2),
   );
   console.log('build info generated', buildInfo);
 }
