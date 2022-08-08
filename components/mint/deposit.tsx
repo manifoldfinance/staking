@@ -9,10 +9,10 @@ import { commify, formatUnits, parseUnits } from '@ethersproject/units';
 import { useDictatorDAO, useTokenContract } from '@/hooks/useContract';
 import { useMemo, useState } from 'react';
 
-import { BigNumber } from '@ethersproject/bignumber';
-import { BigNumberish } from 'ethers';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+
 import { CONTRACT_ADDRESSES } from '@/constants/contracts';
-import { DOMODAO as DictatorDao } from '@/contracts/types';
+//import { DOMODAO as DictatorDao } from '@/contracts/types';
 import type { FormEvent } from 'react';
 import NumericalInput from '../numericalInput';
 import { Popover } from '@headlessui/react';
@@ -42,11 +42,11 @@ export default function MintDeposit() {
 
   const { mutate: foldBalanceMutate } = useTokenBalance(
     account,
-    TOKEN_ADDRESSES.xFOLD[chainId],
+    TOKEN_ADDRESSES.XFOLD[chainId],
   );
 
   const { data: totalSupply, mutate: totalSupplyMutate } = useTotalSupply(
-    TOKEN_ADDRESSES.xFOLD[chainId],
+    TOKEN_ADDRESSES.XFOLD[chainId],
   );
 
   const formattedTotalSupply = useFormattedBigNumber(totalSupply, 0);
@@ -61,7 +61,7 @@ export default function MintDeposit() {
     useTokenAllowance(
       mintToken?.address,
       account,
-      CONTRACT_ADDRESSES.Staking[chainId],
+      CONTRACT_ADDRESSES.XFOLD[chainId],
     );
 
   const formattedDepositBalance = useFormattedBigNumber(mintTokenBalance, 4);
@@ -157,7 +157,7 @@ export default function MintDeposit() {
 
     try {
       const transaction = await mintTokenContract.approve(
-        CONTRACT_ADDRESSES.Staking[chainId],
+        CONTRACT_ADDRESSES.XFOLD[chainId],
         MaxUint256,
       );
 
@@ -226,35 +226,6 @@ export default function MintDeposit() {
                     <span>%</span>
                   </div>
                 </div>
-
-                <div>
-                  <label
-                    className="block mb-2 text-sm text-gray-300"
-                    htmlFor="liquidationFee"
-                  >
-                    Liquidity Position Price
-                  </label>
-
-                  <div className="flex px-3 py-1 rounded-md bg-primary focus-within:ring-4">
-                    <input
-                      autoComplete="off"
-                      autoCorrect="off"
-                      inputMode="numeric"
-                      id="liquidationFee"
-                      name="liquidationFee"
-                      placeholder="10"
-                      step={0.1}
-                      max={10}
-                      min={0}
-                      className="hide-number-input-arrows w-full text-right appearance-none bg-transparent focus:outline-none mr-0.5 text-white"
-                      spellCheck="false"
-                      type="number"
-                      {...slippageInput.eventBind}
-                    />
-
-                    <span>%</span>
-                  </div>
-                </div>
               </div>
             </div>
           </Popover.Panel>
@@ -302,7 +273,7 @@ export default function MintDeposit() {
       <div className="w-full h-px bg-primary-300" />
 
       <div className="flex justify-between">
-        <p className="leading-none">xFOLD Received</p>
+        <p className="leading-none">XFOLD Received</p>
 
         <p className="leading-none">
           {formattedFoldAmountOut === '0.00' ? `-` : formattedFoldAmountOut}
@@ -310,7 +281,7 @@ export default function MintDeposit() {
       </div>
 
       <div className="flex justify-between">
-        <p className="leading-none">xFOLD Supply</p>
+        <p className="leading-none">XFOLD Supply</p>
 
         <p className="leading-none">{`${formattedTotalSupply} / ${commify(
           MAX_FOLD_MINTABLE,
@@ -335,13 +306,4 @@ export default function MintDeposit() {
       </div>
     </form>
   );
-}
-
-function amount(
-  amount: any,
-  BigNumberish: any,
-  operatorVote: any,
-  string: any,
-) {
-  throw new Error('Function not implemented.');
 }

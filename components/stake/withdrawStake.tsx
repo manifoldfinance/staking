@@ -1,6 +1,5 @@
 import Button, { MaxButton } from '../button';
 import { formatUnits, parseUnits } from '@ethersproject/units';
-import { getxFOLDStaked, useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 import type { FormEvent } from 'react';
 import { MIN_INPUT_VALUE } from '@/constants/numbers';
@@ -22,6 +21,7 @@ import useInput from '@/hooks/useInput';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
 import { Contract } from 'ethers';
+import { usexFOLDStaked } from '@/hooks/view/usexFOLDStaked';
 
 dayjs.extend(relativeTime);
 
@@ -31,10 +31,10 @@ export default function WithdrawStake() {
 
   const { mutate: xfoldBalanceMutate } = useTokenBalance(
     account,
-    TOKEN_ADDRESSES.xFOLD[chainId],
+    TOKEN_ADDRESSES.XFOLD[chainId],
   );
 
-  const { data: xfoldStaked, mutate: xfoldStakedMutate } = useXFOLDStaked();
+  const { data: xfoldStaked, mutate: xfoldStakedMutate } = usexFOLDStaked();
 
   const DOMO_DAO = useDictatorDAO();
   const FOLD_ERC20 = useFoldToken();
@@ -64,7 +64,7 @@ export default function WithdrawStake() {
       withdrawInput.clear();
 
       const transaction = await DOMO_DAO.burn(account, amount);
-
+      console.log('XFOLD - Burning and unstaking in progress ');
       // const transaction = await XFOLD.burn(
       //   // @ts-ignore
       //   to,
@@ -113,7 +113,7 @@ export default function WithdrawStake() {
       </div>
 
       <div>
-        <div className="flex space-x-4 mb-2">
+        <div className="flex mb-2 space-x-4">
           <TokenSingle symbol="xFOLD" />
 
           <div className="flex-1">
@@ -130,7 +130,7 @@ export default function WithdrawStake() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 h-5">
+        <p className="h-5 text-sm text-gray-300">
           {xfoldStaked && formattedXFOLDStaked ? (
             <>
               <span>{`Available: ${formattedXFOLDStaked} xFOLD`}</span>{' '}

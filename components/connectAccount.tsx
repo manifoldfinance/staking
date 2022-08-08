@@ -22,9 +22,16 @@ export default function ConnectAccount() {
               </h3>
               <br />
               <br />
+<<<<<<< HEAD
+              <p>release v.0.7.2. - v2022.01.02 </p>
+              <p>evtag: bc02400352968b9490fa23f3348313093e972a01</p>
+||||||| c5faaf2
+              <p>release v.0.6.0</p>
+=======
 
               <p>🌀 💊 🔵 🍣</p>
               <p></p>
+>>>>>>> trunk
             </div>
 
             <Button onClick={openWalletModal}>{`Connect Wallet`}</Button>

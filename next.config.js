@@ -4,6 +4,17 @@ module.exports = {
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
   optimizeImages: true,
+<<<<<<< HEAD
+  optimizeCss: true,
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false
+    }
+    return config
+  },
+||||||| c5faaf2
+  optimizeCss: true
+=======
   optimizeCss: true,
 //  experimental: { 
 //    esmExternals: true,
@@ -24,6 +35,7 @@ module.exports = {
     }
     return config
   },
+>>>>>>> trunk
 }
 
 // Don't delete this console log, useful to see the config in Vercel deployments

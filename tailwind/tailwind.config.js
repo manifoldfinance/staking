@@ -4,7 +4,7 @@ const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind');
 // const defaultTheme = require('tailwindcss/defaultTheme')
 // const plugin = require('tailwindcss/plugin')
 
-const height = require('./tailwind/height');
+const height = require('./height');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
