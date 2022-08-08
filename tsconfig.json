@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "es2019",
+||||||| c5faaf2
+    "target": "es6",
+=======
+    "target": "ESNext",
+>>>>>>> trunk
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,7 +18,10 @@
     "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "sourceMap": false,
+    "module": "ESNext",
     "moduleResolution": "node",
     "strictNullChecks": false,
     "resolveJsonModule": true,
@@ -24,15 +33,35 @@
         "./*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "tsBuildInfoFile": "./"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
+<<<<<<< HEAD
   ],
+||||||| c5faaf2
+, "jest.config.js", "__tests__/depositStake.js"  ],
+=======
+, "jest.config.js", "__tests__/depositStake.js"  
+  ],
+>>>>>>> trunk
   "exclude": [
+<<<<<<< HEAD
     "node_modules",
     "contracts"
   ]
+||||||| c5faaf2
+    "node_modules",
+   "./contracts/types/DictatorDAOFactory.ts"
+  ]
+=======
+    "**/node_modules",
+    "**/.*/",
+   "./contracts/types/DictatorDAOFactory.ts"
+  ],
+  "files": ["connectors.ts"]
+>>>>>>> trunk
 }
