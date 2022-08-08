@@ -2,13 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+.themeDefault,
+#__next {
+  @apply bg-bg-light text-font-light ring-font-light dark:bg-bg-dark dark:text-font-dark dark:ring-font-dark;
+}
+
+.themeDefault2 {
+  @apply bg-searchbar-light placeholder:text-font-light dark:bg-searchbar-dark dark:placeholder:text-font-dark;
+}
+
+.themeBorder {
+  @apply border-font-light dark:border-font-dark;
+}
+
+.themeHover:hover {
+  @apply bg-searchbar-light dark:bg-searchbar-dark;
+}
+
 @layer utilities {
   .hide-number-input-arrows::-webkit-outer-spin-button,
   .hide-number-input-arrows::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  .hide-number-input-arrows[type="number"] {
+  .hide-number-input-arrows[type='number'] {
     -moz-appearance: textfield;
   }
   .touch-action-none {
