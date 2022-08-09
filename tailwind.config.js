@@ -36,7 +36,7 @@ module.exports = {
         },
         font: {
           light: '#1c1917',
-          dark: '#fafafa',
+          dark: '#1c1917',
         },
         searchbar: {
           light: '#d4d4d8',

@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.themeDefault,
-#__next {
-  @apply bg-bg-light text-font-light ring-font-light dark:bg-bg-dark dark:text-font-dark dark:ring-font-dark;
+.themeDefault, #__next {
+  @apply bg-bg-dark dark:bg-bg-dark text-font-dark dark:text-font-dark ring-font-dark dark:ring-font-dark;
 }
 
+
 .themeDefault2 {
-  @apply bg-searchbar-light placeholder:text-font-light dark:bg-searchbar-dark dark:placeholder:text-font-dark;
+  @apply bg-searchbar-light dark:bg-searchbar-dark dark:placeholder:text-font-dark placeholder:text-font-dark;
 }
 
 .themeBorder {
-  @apply border-font-light dark:border-font-dark;
+  @apply border-font-dark dark:border-font-dark;
 }
 
 .themeHover:hover {
-  @apply bg-searchbar-light dark:bg-searchbar-dark;
+  @apply bg-searchbar-dark dark:bg-searchbar-dark;
 }
 
 @layer utilities {
@@ -43,7 +43,7 @@
   height: 200vh;
   background: radial-gradient(
     50% 50% at 50% 50%,
-    rgba(99, 102, 241, 6%),
+    rgba(255, 255, 255, 0.06),
     rgba(255, 255, 255, 0) 100%
   );
   transform: translate(-50vw, -100vh);
