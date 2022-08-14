@@ -11,11 +11,11 @@ const nextConfig = {
   poweredByHeader: false,
   optimizeImages: true,
   optimizeCss: true,
-//  experimental: { 
-//    esmExternals: true,
-//    outputFileTracing: true
-//  },
-}
+  //  experimental: {
+  //    esmExternals: true,
+  //    outputFileTracing: true
+  //  },
+};
 
 export default nextConfig;
 
