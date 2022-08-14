@@ -43,7 +43,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install project dependencies
-        run: yarn --prefer-offline
+        run: yarn install
         id: install
 
       - name: Install project dependencies
