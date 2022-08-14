@@ -14,6 +14,12 @@
     "analyze": "ANALYZE=true next build",
     "compile-contract-types": "npx typechain --target ethers-v5 --out-dir './contracts/types' './contracts/*.json'"
   },
+"resolutions": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.11"
+},
   "dependencies": {
     "@davatar/react": "^1.8.1",
     "@disco3/detect-provider": "^0.1.1",
