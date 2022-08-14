@@ -1,5 +1,11 @@
+
+const packageJson = require('./package.json');
+const date = new Date();
+const GIT_COMMIT_SHA_SHORT = typeof process.env.GIT_COMMIT_SHA === 'string' && process.env.GIT_COMMIT_SHA.substring(0, 8);
+
 // @ts-check
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   basePath: '/swap',
   reactStrictMode: true,
@@ -11,10 +17,11 @@ const nextConfig = {
   poweredByHeader: false,
   optimizeImages: true,
   optimizeCss: true,
-  //  experimental: {
+   experimental: {
   //    esmExternals: true,
   //    outputFileTracing: true
-  //  },
+    swcTraceProfiling: true
+  },
 };
 
 export default nextConfig;

@@ -7,6 +7,12 @@ module.exports = {
     './constants/*.ts',
   ],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
         primary: {
@@ -21,7 +27,7 @@ module.exports = {
     },
   },
   corePlugins: {
-    preflight: false,
+    preflight: true,
   },
   plugins: [],
 };
