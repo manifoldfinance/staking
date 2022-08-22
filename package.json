@@ -17,7 +17,7 @@
   "dependencies": {
     "@davatar/react": "^1.8.1",
     "@ethersproject/abi": "5.6.3",
-    "@ethersproject/abstract-provider": "5.6.0",
+    "@ethersproject/abstract-provider": "5.7.0",
     "@ethersproject/address": "5.6.0",
     "@ethersproject/bytes": "5.6.0",
     "@ethersproject/constants": "^5.6.0",
