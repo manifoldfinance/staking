@@ -52,10 +52,10 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <NextLink
-              href="/faqs"
+              href="https://manifold-kb.netlify.app/"
               className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
             >
-              FAQs
+              Knowledgebase
             </NextLink>
           )}
         </Menu.Item>

@@ -1,13 +1,18 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './components/**/*.{tsx,ts}',
     './pages/**/*.{tsx,ts}',
     './views/**/*.{tsx,ts}',
     './constants/*.ts',
   ],
-  darkMode: 'media',
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
         primary: {
@@ -21,8 +26,8 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
+  corePlugins: {
+    preflight: true,
   },
   plugins: [],
 };
