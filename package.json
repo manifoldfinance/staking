@@ -39,7 +39,7 @@
     "@web3-react/types": "^6.0.7",
     "@wwwr/injectedprovider": "^1.0.0",
     "classnames": "^2.3.1",
-    "dayjs": "^1.10.6",
+    "dayjs": "^1.11.6",
     "eth-rpc-errors": "^4.0.3",
     "ethers": "^5.6.9",
     "fathom-client": "^3.1.0",
