@@ -1,9 +1,10 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-.DS_Store 
-node_modules
+# dependencies
+/node_modules
 /.pnp
 .pnp.js
-tsconfig.tsbuildinfo
+
 # testing
 /coverage
 
@@ -14,26 +15,23 @@ tsconfig.tsbuildinfo
 # production
 /build
 
+# misc
+.DS_Store
 *.pem
+/.vscode/
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # vercel
 .vercel
 
-# eslint
-.eslintcache
-
-!/contracts/types
-
-# Local Netlify folder
-.netlify
+# typescript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,34 +12,19 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "sourceMap": false,
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "node",
-    "strictNullChecks": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "incremental": true,
-    "tsBuildInfoFile": "./"
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "jest.config.js", "__tests__/depositStake.js"  
   ],
   "exclude": [
-    "**/node_modules",
-    "**/.*/",
-   "./contracts/types/DictatorDAOFactory.ts"
-  ],
-  "files": ["connectors.ts"]
+    "node_modules"
+  ]
 }

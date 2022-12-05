@@ -1,7 +1,0 @@
-.github/
-*.md
-__tests__
-__mocks__
-scripts/
-docs/
-doc/

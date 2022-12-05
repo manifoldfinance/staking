@@ -1,30 +1,64 @@
 import '../styles/globals.css';
+import { AppProps } from "next/app";
+import {
+  WagmiConfig,
+  createClient,
+  defaultChains,
+  configureChains,
+} from 'wagmi'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { publicProvider } from 'wagmi/providers/public'
+import { infuraProvider } from 'wagmi/providers/infura'
+ 
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+ 
 
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import Navigation from '@/components/navigation';
-import { Toaster } from 'react-hot-toast';
-import { useEagerConnect } from '@/hooks/useEagerConnect';
+const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
+  infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_ID }),
+  alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
+  publicProvider(),
+])
+ 
+const client = createClient({
+  autoConnect: true,
+  connectors: [
+    new MetaMaskConnector({ chains }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: 'wagmi',
+      },
+    }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        qrcode: true,
+      },
+    }),
+    new InjectedConnector({
+      chains,
+      options: {
+        name: 'Injected',
+        shimDisconnect: true,
+      },
+    }),
+  ],
+  provider,
+  webSocketProvider,
+})
 
-function MyApp({ Component, pageProps }: AppProps) {
-  useEagerConnect();
 
+
+
+const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <Head>
-        <title>Manifold Finance</title>
-        <meta name="description" content="FOLD Staking DApp and Dashboard" />
-      </Head>
-
-      <Navigation />
-
-      <main>
+    <WagmiConfig client={client}>
         <Component {...pageProps} />
-      </main>
-
-      <Toaster position="bottom-right" reverseOrder={false} />
-    </>
+    </WagmiConfig>
   );
-}
+};
 
-export default MyApp;
+export default App;
