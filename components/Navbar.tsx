@@ -28,21 +28,22 @@ export default function Navigation() {
           </h3>
           <ul className="space-y-6 text-lg text-white">
             <li className="mt-9 p-2 rounded-lg border border-grayrose bg-grayrose">
-              Where do tributes come from? <br /> &nbsp; -
+              Where do tributes come from? <br /> <p className="pl-1.5">
               <a
                 className="hover:underline"
                 href="https://kb.manifoldfinance.com/docs/general/general-token"
               >
-                <strong className="text-almostwhite"> Click me to view explanatory docs page. </strong>
+                <strong className="text-almostwhite"> - Click me to view explanatory docs page. </strong>
               </a>
+              </p>
             </li>
     
             <li className="p-2 rounded-lg border border-grayrose bg-grayrose">
               What is current yield? <br />
-              <strong className="text-almostwhite"> &nbsp; - Theres no tribute distribution at the moment.</strong>
+              <p className="pl-1.5"> <strong className="text-almostwhite"> - Theres no tribute distribution at the moment.</strong> </p>
             </li>
             <li className="p-2 rounded-lg border border-grayrose bg-grayrose">
-              Is there a lock on staking? <br /> <strong className="text-almostwhite"> &nbsp; - 24h. </strong>
+              Is there a lock on staking? <br /> <p className="pl-1.5"> <strong className="text-almostwhite"> - 24h. </strong> </p>
             </li>
           </ul>
           <hr className="border-gray-700 mt-9 pb-4" />

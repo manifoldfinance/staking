@@ -13,7 +13,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue, proxima-nova;
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none;   /* Firefox */
   -webkit-appearance: none;
   -moz-appearance:    none;
   appearance:         none;
@@ -31,12 +31,12 @@ a {
 @media (prefers-color-scheme: dark) {
   html,
   body {
-          background: rgb(5,13,32);
-background: radial-gradient(circle, rgba(5,13,32,1) 22%, rgba(0,8,27,1) 73%); 
-  overflow: auto;
+    background: rgb(5,13,32);
+    background: radial-gradient(circle, rgba(5,13,32,1) 22%, rgba(0,8,27,1) 73%); 
     min-height: 100%;
+    overflow: visible;
   }
 }
 body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
