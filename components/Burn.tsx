@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { XFOLD_ABI } from "../const/xfoldabi";
 import {
   useAccount,
@@ -14,10 +14,11 @@ import Image from "next/image";
 import xfoldlogo from "../public/xfoldlogo.png";
 import { isMobile } from "react-device-detect";
 import UserInputForm from "./UserInputForm";
+import { UserInputContext } from "./UserOperationManager";
 
 export default function Burn() {
   const { address: USER_ADDRESS, isConnected: isConnected } = useAccount();
-  const [UserInput, setUserInput] = useState("");
+  const { UserInput, setUserInput } = useContext(UserInputContext);
   const [isHydrated, setIsHydrated] = useState(false);
   const DebouncedUserInput = useDebounce(UserInput, 500); //catches value 500ms after UserInput stops changing
   let USER_INPUT_AMOUNT;
