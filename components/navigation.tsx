@@ -65,7 +65,7 @@ export default function Navigation() {
           <ul className="flex space-x-2 md:ml-4 xl:space-x-4">
             <li>
               <NavigationItem
-                href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
+                href="https://www.sushi.com/analytics/token/eth:0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
                 text="$FOLD"
               />
             </li>
