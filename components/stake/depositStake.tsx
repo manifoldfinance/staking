@@ -242,6 +242,10 @@ export default function DepositStake() {
         >
           {depositInput.hasValue ? 'Complete Staking' : 'Enter an amount'}
         </Button>
+        
+        <p className="h-5 text-sm text-gray-300">
+          Your tokens will be locked for 24 hours before you can withdraw them
+        </p>
       </div>
     </form>
   );
