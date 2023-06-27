@@ -40,28 +40,6 @@ export default function OverflowMenu() {
         <Menu.Item>
           {({ active }) => (
             <a
-              href={SUSHI_SWAP_LINKS.xFOLD}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
-            >
-              xFOLD
-            </a>
-          )}
-        </Menu.Item>
-        <Menu.Item>
-          {({ active }) => (
-            <NextLink
-              href="/faqs"
-              className={cn(menuItemClassNames, active && 'bg-white/[0.10]')}
-            >
-              FAQs
-            </NextLink>
-          )}
-        </Menu.Item>
-        <Menu.Item>
-          {({ active }) => (
-            <a
               href="https://manifoldfinance.com"
               target="_blank"
               rel="noopener noreferrer"
