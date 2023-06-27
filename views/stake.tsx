@@ -60,8 +60,8 @@ function StakeView() {
         </Tab.Group>
       </div>
     </section>
-    <section className='pb-8 text-white sm:pt-8 md:pt-16'>
-      <div className="bg-primary-400 px-5 py-4 mx-auto max-w-lg ring-1 ring-white ring-opacity-20 rounded-lg text-center">
+    <section className='pb-8 text-white px-6 sm:pt-8 md:pt-16'>
+      <div className="bg-primary-400 py-4 mx-auto max-w-lg ring-1 ring-white ring-opacity-20 rounded-lg text-center">
         FOLD/XFOLD Staking is deprecated!
         <p> Dapp has been switched to <strong> withdrawal-only </strong> mode </p>
         <p> Stay tuned for V2 </p>
