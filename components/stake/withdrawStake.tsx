@@ -1,11 +1,12 @@
 import Button, { MaxButton } from '../button';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { getxFOLDStaked, useXFOLDStaked } from '@/hooks/view/usexFOLDStaked';
-
+import { useMemo } from 'react';
 import type { FormEvent } from 'react';
 import { MIN_INPUT_VALUE } from '@/constants/numbers';
 import NumericalInput from '../numericalInput';
 import { TOKEN_ADDRESSES } from '@/constants/tokens';
+import { CONTRACT_ADDRESSES } from '@/constants/contracts';
 import { TokenSingle } from '../tokenSelect';
 import { TransactionToast } from '../customToast';
 import dayjs from 'dayjs';
@@ -19,9 +20,10 @@ import {
 } from '@/hooks/useContract';
 import useFormattedBigNumber from '@/hooks/useFormattedBigNumber';
 import useInput from '@/hooks/useInput';
+import useTokenAllowance from '@/hooks/view/useTokenAllowance';
 import useTokenBalance from '@/hooks/view/useTokenBalance';
 import useWeb3Store from '@/hooks/useWeb3Store';
-import { Contract } from 'ethers';
+import { ethers } from 'ethers';
 
 dayjs.extend(relativeTime);
 
@@ -43,6 +45,24 @@ export default function WithdrawStake() {
 
   const formattedXFOLDStaked = useFormattedBigNumber(xfoldStaked);
 
+
+  const { data: xfoldAllowance, mutate: xfoldAllowanceMutate } =
+    useTokenAllowance(
+      CONTRACT_ADDRESSES.DictatorDAO[chainId],
+      account,
+      TOKEN_ADDRESSES.FOLD[chainId],
+    );
+
+    const convertedxFoldAllowance = xfoldAllowance ? ethers.utils.formatEther(xfoldAllowance) : "0";
+  
+    const xfoldNeedsApproval = useMemo(() => {
+      if (parseFloat(convertedxFoldAllowance) < parseFloat(withdrawInput.value) && withdrawInput.hasValue) {
+        return true;
+      }
+  
+      return;
+    }, [withdrawInput.value, convertedxFoldAllowance, withdrawInput.hasValue]);
+
   async function withdrawXFOLD(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -52,7 +72,7 @@ export default function WithdrawStake() {
       const withdrawAmount = withdrawInput.value;
 
       if (Number(withdrawAmount) <= MIN_INPUT_VALUE) {
-        throw new Error(`Minium Withdraw: ${MIN_INPUT_VALUE} XFOLD`);
+        throw new Error(`Minimum Withdraw: ${MIN_INPUT_VALUE} XFOLD`);
       }
 
       const amount = parseUnits(withdrawAmount);
@@ -106,6 +126,39 @@ export default function WithdrawStake() {
     withdrawInput.setValue(formatUnits(xfoldStaked));
   };
 
+  async function approveXFOLD() {
+    const _id = toast.loading('Waiting for confirmation');
+
+    const depositAmount = withdrawInput.value;
+
+    if (Number(depositAmount) <= MIN_INPUT_VALUE) {
+      throw new Error(`Minimum Withdraw: ${MIN_INPUT_VALUE} XFOLD`);
+    }
+
+    const amount = parseUnits(depositAmount);
+
+    if (amount.gt(xfoldStaked)) {
+      throw new Error(`Maximum Withdraw: ${formattedXFOLDStaked} XFOLD`);
+    }
+
+    try {
+      const transaction = await DOMO_DAO.approve(
+        CONTRACT_ADDRESSES.FOLD[chainId],
+        amount,
+      );
+
+      toast.loading(`Approve XFOLD`, { id: _id });
+
+      await transaction.wait();
+
+      toast.success(`Approve XFOLD`, { id: _id });
+
+      xfoldAllowanceMutate();
+    } catch (error) {
+      handleError(error, _id);
+    }
+  };
+
   return (
     <form method="POST" onSubmit={withdrawXFOLD} className="space-y-4">
       <div className="flex justify-between">
@@ -139,9 +192,16 @@ export default function WithdrawStake() {
           ) : null}
         </p>
       </div>
+      <div className="space-y-4">
+        {xfoldNeedsApproval && (
+          <Button onClick={approveXFOLD}>
+            {`Permit FOLD to withdraw`}
+          </Button>
+        )}
+        </div>
 
       <div className="space-y-4">
-        <Button type="submit" disabled={!withdrawInput.hasValue}>
+        <Button type="submit" disabled={!withdrawInput.hasValue || xfoldNeedsApproval}>
           {withdrawInput.hasValue ? 'Withdraw' : 'Enter an amount'}
         </Button>
       </div>

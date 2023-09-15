@@ -32,7 +32,7 @@ export default function MobileMenu() {
         <Menu.Item>
           {({ active }) => (
             <NextLink
-              href="https://analytics.sushi.com/tokens/0xd084944d3c05cd115c09d072b9f44ba3e0e45921"
+              href="https://www.sushi.com/pools/1:0xa914a9b9e03b6af84f9c6bd2e0e8d27d405695db"
               active={active}
             >
               FOLD

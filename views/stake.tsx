@@ -14,11 +14,12 @@ const TAB_KEYS = {
 
 function StakeView() {
   return (
+    <>
     <section className="pb-8 text-white sm:pt-8 md:pt-16">
       <div className="px-5 mx-auto max-w-lg">
-        <Tab.Group>
+        <Tab.Group defaultIndex={0}>
           <Tab.List as={Panel} className="flex space-x-1" padding="p-1">
-            <Tab key={TAB_KEYS.DEPOSIT} className={tabClassNames}>
+            <Tab disabled key={TAB_KEYS.DEPOSIT} className="w-full py-2.5 text-sm leading-5 font-medium rounded-lg cursor-not-allowed text-gray-400 text-opacity-75">
               {TAB_KEYS.DEPOSIT}
             </Tab>
 
@@ -26,7 +27,7 @@ function StakeView() {
               {TAB_KEYS.WITHDRAW}
             </Tab>
 
-            <Tab key={TAB_KEYS.MINT} className={tabClassNames}>
+            <Tab disabled key={TAB_KEYS.MINT} className="w-full py-2.5 text-sm leading-5 font-medium rounded-lg cursor-not-allowed text-gray-400 text-opacity-75">
               {TAB_KEYS.MINT}
             </Tab>
           </Tab.List>
@@ -59,6 +60,14 @@ function StakeView() {
         </Tab.Group>
       </div>
     </section>
+    <section className='pb-8 text-white px-6 sm:pt-8 md:pt-16'>
+      <div className="bg-primary-400 py-4 mx-auto max-w-lg ring-1 ring-white ring-opacity-20 rounded-lg px-3 text-center">
+        FOLD/XFOLD Staking is deprecated!
+        <p> Dapp has been switched to <strong> withdrawal-only </strong> mode </p>
+        <p> Stay tuned for V2 </p>
+      </div>
+      </section>
+      </>
   );
 }
 
