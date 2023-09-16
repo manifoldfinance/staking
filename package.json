@@ -1,6 +1,6 @@
 {
   "name": "@manifoldfinance/staking",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,7 @@
     "@ethersproject/abi": "5.6.3",
     "@ethersproject/abstract-provider": "5.7.0",
     "@ethersproject/address": "5.6.0",
+    "@ethersproject/bignumber": "^5",
     "@ethersproject/bytes": "5.6.0",
     "@ethersproject/constants": "^5.6.0",
     "@ethersproject/contracts": "^5.6.0",
@@ -84,7 +85,7 @@
     "postcss": "^8.3.6",
     "prettier": "^2.7.1",
     "pretty-quick": "^3.1.1",
-    "tailwindcss": "^2.2.8",
+    "tailwindcss": "^2.2.19",
     "ts-jest": "27.0.0",
     "ts-node": "^10.4.0",
     "tslib": "^2.4.0",
