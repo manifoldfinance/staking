@@ -25,6 +25,18 @@ class MyDocument extends Document {
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="msapplication-TileColor" content="#0c0f21" />
           <meta name="theme-color" content="#0c0f21" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "name": "Manifold Finance",
+  "@type": ["SoftwareApplication","FinanceApplication", "MobileApplication", "BrowserApplication"],
+  "applicationCategory": "FinanceApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+}
+</script>
         </Head>
 
         <body className="bg-primary antialiased">
